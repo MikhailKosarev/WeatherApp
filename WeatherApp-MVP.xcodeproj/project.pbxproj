@@ -12,6 +12,7 @@
 		74AC637B28E2F0C300354BD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC637A28E2F0C300354BD2 /* ViewController.swift */; };
 		74AC638028E2F0C400354BD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74AC637F28E2F0C400354BD2 /* Assets.xcassets */; };
 		74AC638328E2F0C400354BD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74AC638128E2F0C400354BD2 /* LaunchScreen.storyboard */; };
+		74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639428E3089100354BD2 /* UIViewController+Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		74AC637F28E2F0C400354BD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74AC638228E2F0C400354BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74AC638428E2F0C400354BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74AC639428E3089100354BD2 /* UIViewController+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		74AC636A28E2F0C300354BD2 = {
 			isa = PBXGroup;
 			children = (
+				74AC639328E3088100354BD2 /* Extensions */,
 				74AC637528E2F0C300354BD2 /* WeatherApp-MVP */,
 				74AC637428E2F0C300354BD2 /* Products */,
 			);
@@ -62,6 +65,14 @@
 				74AC638428E2F0C400354BD2 /* Info.plist */,
 			);
 			path = "WeatherApp-MVP";
+			sourceTree = "<group>";
+		};
+		74AC639328E3088100354BD2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				74AC639428E3089100354BD2 /* UIViewController+Preview.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +148,7 @@
 				74AC637B28E2F0C300354BD2 /* ViewController.swift in Sources */,
 				74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */,
 				74AC637928E2F0C300354BD2 /* SceneDelegate.swift in Sources */,
+				74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
