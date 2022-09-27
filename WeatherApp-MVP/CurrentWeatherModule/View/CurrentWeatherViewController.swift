@@ -22,7 +22,7 @@ final class CurrentWeatherViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Current city"
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.font = Constants.systemFont50
         label.textColor = .label
         label.textAlignment = .center
         return label
@@ -58,11 +58,15 @@ final class CurrentWeatherViewController: UIViewController {
         stackView.spacing = Constants.defaultSpacing40
         return stackView
     }()
+    
+    // MARK: - Public properties
+    public var presenter: CurrentWeatherPresenterProtocol?
 
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setDelegates()
         setConstraints()
     }
     
@@ -70,6 +74,45 @@ final class CurrentWeatherViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(currentStackView)
+    }
+    
+    private func setDelegates() {
+        citySearchBar.delegate = self
+    }
+}
+
+// MARK: - CurrentWeatherViewProtocol
+extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
+    func reloadWeather(city: String, degree: String, condition: String) {
+        cityLabel.text = city
+        degreeLabel.text = degree
+        conditionImageView.image = UIImage(systemName: condition)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension CurrentWeatherViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // make request with city name
+        if let cityName = searchBar.text {
+            presenter?.getWeather(for: cityName)
+        } else {
+            searchBar.placeholder = "print the city name here"
+        }
+
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
     }
 }
 

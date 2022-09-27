@@ -14,5 +14,6 @@ public struct Constants {
     static let defaultSpacing40: CGFloat = 40.0
     
     // fonts
+    static let systemFont50 = UIFont.systemFont(ofSize: 50)
     static let systemFont80 = UIFont.systemFont(ofSize: 80)
 }
