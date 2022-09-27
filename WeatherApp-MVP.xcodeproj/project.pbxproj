@@ -44,7 +44,6 @@
 		74AC636A28E2F0C300354BD2 = {
 			isa = PBXGroup;
 			children = (
-				74AC639328E3088100354BD2 /* Extensions */,
 				74AC637528E2F0C300354BD2 /* WeatherApp-MVP */,
 				74AC637428E2F0C300354BD2 /* Products */,
 			);
@@ -63,6 +62,7 @@
 			children = (
 				74AC638A28E2F4A900354BD2 /* App */,
 				74AC638C28E2F54B00354BD2 /* CurrentWeatherModule */,
+				74AC639328E3088100354BD2 /* Extensions */,
 				74AC638B28E2F4B900354BD2 /* Resourses */,
 			);
 			path = "WeatherApp-MVP";
