@@ -16,6 +16,7 @@
 		74AC639228E3048800354BD2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639128E3048800354BD2 /* Constants.swift */; };
 		74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639428E3089100354BD2 /* UIViewController+Preview.swift */; };
 		74AC639C28E43C2500354BD2 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639B28E43C2500354BD2 /* CurrentWeatherModel.swift */; };
+		74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639E28E4447300354BD2 /* NetworkServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		74AC639128E3048800354BD2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		74AC639428E3089100354BD2 /* UIViewController+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
 		74AC639B28E43C2500354BD2 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
+		74AC639E28E4447300354BD2 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				74AC638A28E2F4A900354BD2 /* App */,
 				74AC638C28E2F54B00354BD2 /* CurrentWeatherModule */,
+				74AC639D28E4445300354BD2 /* Services */,
 				74AC639328E3088100354BD2 /* Extensions */,
 				74AC638B28E2F4B900354BD2 /* Resourses */,
 			);
@@ -130,6 +133,14 @@
 				74AC639B28E43C2500354BD2 /* CurrentWeatherModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		74AC639D28E4445300354BD2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				74AC639E28E4447300354BD2 /* NetworkServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +219,7 @@
 				74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */,
 				74AC637928E2F0C300354BD2 /* SceneDelegate.swift in Sources */,
 				74AC638E28E2F5F800354BD2 /* CurrentWeatherPresenter.swift in Sources */,
+				74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */,
 				74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

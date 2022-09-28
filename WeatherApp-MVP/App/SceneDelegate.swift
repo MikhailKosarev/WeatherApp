@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let view = CurrentWeatherViewController()
-        let presenter = CurrentWeatherPresenter(view: view)
+        let networkService = NetworkService()
+        let presenter = CurrentWeatherPresenter(view: view, networkService: networkService)
         view.presenter = presenter
         window?.rootViewController = view
         window?.makeKeyAndVisible()
