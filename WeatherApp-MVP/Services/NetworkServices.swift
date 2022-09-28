@@ -8,11 +8,11 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func getCurrentWeather(cityName: String, completion: @escaping(Result<CurrentWeatherModel, Error>) -> Void)
+    func getCurrentWeather(cityName: String, completion: @escaping(Result<CurrentWeatherData, Error>) -> Void)
 }
 
 final class NetworkService: NetworkServiceProtocol {
-    func getCurrentWeather(cityName: String, completion: @escaping (Result<CurrentWeatherModel, Error>) -> Void) {
+    func getCurrentWeather(cityName: String, completion: @escaping (Result<CurrentWeatherData, Error>) -> Void) {
         let urlString = "https://api.openweathermap.org/data/2.5/weather?appid=c2f034e5d4f2fa20a5b92809ec6f83ca&units=metric&q=" + cityName
         guard let url = URL(string: urlString) else { return }
         
@@ -24,7 +24,7 @@ final class NetworkService: NetworkServiceProtocol {
             guard let data = data else { return }
             
             do {
-                let decodedData = try JSONDecoder().decode(CurrentWeatherModel.self, from: data)
+                let decodedData = try JSONDecoder().decode(CurrentWeatherData.self, from: data)
                 completion(.success(decodedData))
             } catch let error {
                 completion(.failure(error))

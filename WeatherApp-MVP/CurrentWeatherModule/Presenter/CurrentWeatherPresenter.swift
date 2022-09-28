@@ -33,12 +33,21 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     func getWeather(for cityName: String) {
         networkService?.getCurrentWeather(cityName: cityName) { [weak self ]  result in
             switch result {
-            case .success(let currentWeather):
-                print(currentWeather)
+            case .success(let currentWeatherData):
+                // get data
+                let cityName = currentWeatherData.name
+                let temperature = currentWeatherData.main.temp
+                let conditionId = currentWeatherData.weather[0].id
+                // write the model
+                let currentWeather = CurrentWeatherModel(cityName: cityName,
+                                                       temperature: temperature,
+                                                       conditionId: conditionId)
+                // reload view
                 DispatchQueue.main.async {
-                    self?.view?.reloadWeather(city: currentWeather.name,
-                                              degree: "+ " + String(currentWeather.main.temp),
-                                              condition: "cloud.sun.rain")
+                    
+                    self?.view?.reloadWeather(city: currentWeather.cityName,
+                                              degree: currentWeather.temperatureString,
+                                              condition: currentWeather.conditionName)
                 }
             case .failure(let error):
                 print(error)
