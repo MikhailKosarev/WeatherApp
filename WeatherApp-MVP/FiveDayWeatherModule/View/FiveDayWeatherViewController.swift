@@ -24,14 +24,12 @@ final class FiveDayWeatherViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.backgroundColor = .green
         return collectionView
     }()
     
     private let detailsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .purple
         return tableView
     }()
     
@@ -46,12 +44,15 @@ final class FiveDayWeatherViewController: UIViewController {
     
     // MARK: - Private methods
     private func setupView() {
+        view.backgroundColor = .white
         view.addSubview(cityLabel)
         view.addSubview(daysCollectionView)
         view.addSubview(detailsTableView)
         
-        daysCollectionView.register(DaysCollectionViewCell.self.self, forCellWithReuseIdentifier: DaysCollectionViewCell.reuseID)
-        detailsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "id")
+        daysCollectionView.register(DaysCollectionViewCell.self.self,
+                                    forCellWithReuseIdentifier: DaysCollectionViewCell.reuseID)
+        detailsTableView.register(DetailsTableViewCell.self,
+                                  forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }
     
     private func setDelegates() {
@@ -70,17 +71,13 @@ extension FiveDayWeatherViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: DaysCollectionViewCell.reuseID, for: indexPath)
-//        cell.backgroundColor = .blue
-        print("ok")
         return cell
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension FiveDayWeatherViewController: UICollectionViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        100
-//    }
+
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -98,9 +95,16 @@ extension FiveDayWeatherViewController: UITableViewDataSource {
         5
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Header \(section)"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        5
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: "id") {
-            cell.textLabel?.text = "cell \(indexPath.row)"
+        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.reuseID) {
             return cell
         } else {
             return UITableViewCell()
