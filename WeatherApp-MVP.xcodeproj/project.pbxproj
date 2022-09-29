@@ -22,6 +22,10 @@
 		74F31D1428E58F030096309D /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */; };
 		74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1528E59D120096309D /* DetailsTableViewCell.swift */; };
 		74F31D1928E5A62A0096309D /* FiveDayWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */; };
+		74F31D1C28E5D3D80096309D /* FiveDayWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1B28E5D3D80096309D /* FiveDayWeatherData.swift */; };
+		74F31D1E28E5D86A0096309D /* DayWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1D28E5D86A0096309D /* DayWeatherModel.swift */; };
+		74F31D2028E5DC600096309D /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1F28E5DC600096309D /* CityModel.swift */; };
+		74F31D2228E5DDE70096309D /* DetailWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D2128E5DDE70096309D /* DetailWeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCollectionViewCell.swift; sourceTree = "<group>"; };
 		74F31D1528E59D120096309D /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherPresenter.swift; sourceTree = "<group>"; };
+		74F31D1B28E5D3D80096309D /* FiveDayWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherData.swift; sourceTree = "<group>"; };
+		74F31D1D28E5D86A0096309D /* DayWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWeatherModel.swift; sourceTree = "<group>"; };
+		74F31D1F28E5DC600096309D /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		74F31D2128E5DDE70096309D /* DetailWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +166,9 @@
 		74F31D0C28E47DFC0096309D /* FiveDayWeatherModule */ = {
 			isa = PBXGroup;
 			children = (
+				74F31D1A28E5D3B20096309D /* Model */,
 				74F31D0D28E47E130096309D /* View */,
+				74F31D1728E5A60D0096309D /* Presenter */,
 			);
 			path = FiveDayWeatherModule;
 			sourceTree = "<group>";
@@ -168,7 +178,6 @@
 			children = (
 				74F31D1228E58ED80096309D /* Cells */,
 				74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */,
-				74F31D1728E5A60D0096309D /* Presenter */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +197,17 @@
 				74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		74F31D1A28E5D3B20096309D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D1B28E5D3D80096309D /* FiveDayWeatherData.swift */,
+				74F31D1D28E5D86A0096309D /* DayWeatherModel.swift */,
+				74F31D1F28E5DC600096309D /* CityModel.swift */,
+				74F31D2128E5DDE70096309D /* DetailWeatherModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,13 +283,17 @@
 				74AC639228E3048800354BD2 /* Constants.swift in Sources */,
 				74AC637B28E2F0C300354BD2 /* CurrentWeatherViewController.swift in Sources */,
 				74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */,
+				74F31D1E28E5D86A0096309D /* DayWeatherModel.swift in Sources */,
+				74F31D2028E5DC600096309D /* CityModel.swift in Sources */,
 				74AC639C28E43C2500354BD2 /* CurrentWeatherData.swift in Sources */,
 				74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */,
 				74AC637928E2F0C300354BD2 /* SceneDelegate.swift in Sources */,
 				74AC638E28E2F5F800354BD2 /* CurrentWeatherPresenter.swift in Sources */,
+				74F31D1C28E5D3D80096309D /* FiveDayWeatherData.swift in Sources */,
 				74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */,
 				74F31D1428E58F030096309D /* DaysCollectionViewCell.swift in Sources */,
 				74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */,
+				74F31D2228E5DDE70096309D /* DetailWeatherModel.swift in Sources */,
 				74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */,
 				74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */,
 				74F31D1928E5A62A0096309D /* FiveDayWeatherPresenter.swift in Sources */,
