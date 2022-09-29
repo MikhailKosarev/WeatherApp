@@ -10,6 +10,14 @@ import UIKit
 final class FiveDayWeatherViewController: UIViewController {
     
     // MARK: - Declare UI elements
+    private let citySearchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = "find location"
+        searchBar.searchBarStyle = .minimal
+        return searchBar
+    }()
+    
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +53,7 @@ final class FiveDayWeatherViewController: UIViewController {
     // MARK: - Private methods
     private func setupView() {
         view.backgroundColor = .white
+        view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
         view.addSubview(daysCollectionView)
         view.addSubview(detailsTableView)
@@ -129,8 +138,13 @@ extension FiveDayWeatherViewController {
         
         // set constraints
         NSLayoutConstraint.activate([
+            citySearchBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            citySearchBar.topAnchor.constraint(equalTo: margins.topAnchor),
+            citySearchBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            
+            
             cityLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
-            cityLabel.topAnchor.constraint(equalTo: margins.topAnchor),
+            cityLabel.topAnchor.constraint(equalTo: citySearchBar.bottomAnchor, constant: Constants.spacing10),
             
             daysCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             daysCollectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor,
