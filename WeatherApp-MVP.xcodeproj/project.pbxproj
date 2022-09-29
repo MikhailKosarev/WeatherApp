@@ -21,6 +21,7 @@
 		74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */; };
 		74F31D1428E58F030096309D /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */; };
 		74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1528E59D120096309D /* DetailsTableViewCell.swift */; };
+		74F31D1928E5A62A0096309D /* FiveDayWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherViewController.swift; sourceTree = "<group>"; };
 		74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCollectionViewCell.swift; sourceTree = "<group>"; };
 		74F31D1528E59D120096309D /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			children = (
 				74F31D1228E58ED80096309D /* Cells */,
 				74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */,
+				74F31D1728E5A60D0096309D /* Presenter */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,6 +180,14 @@
 				74F31D1528E59D120096309D /* DetailsTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		74F31D1728E5A60D0096309D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */,
 				74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */,
 				74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */,
+				74F31D1928E5A62A0096309D /* FiveDayWeatherPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
