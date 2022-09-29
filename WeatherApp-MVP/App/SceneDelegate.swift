@@ -19,11 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let view = CurrentWeatherViewController()
-        let networkService = NetworkService()
-        let presenter = CurrentWeatherPresenter(view: view, networkService: networkService)
-        view.presenter = presenter
-        window?.rootViewController = view
+//        let view = CurrentWeatherViewController()
+//        let networkService = NetworkService()
+//        let presenter = CurrentWeatherPresenter(view: view, networkService: networkService)
+//        view.presenter = presenter
+//        window?.rootViewController = view
+//        window?.makeKeyAndVisible()
+        
+        window?.rootViewController = FiveDayWeatherViewController()
         window?.makeKeyAndVisible()
     }
 

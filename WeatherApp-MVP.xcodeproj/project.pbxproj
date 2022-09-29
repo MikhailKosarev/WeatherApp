@@ -18,6 +18,9 @@
 		74AC639C28E43C2500354BD2 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639B28E43C2500354BD2 /* CurrentWeatherData.swift */; };
 		74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639E28E4447300354BD2 /* NetworkServices.swift */; };
 		74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63A028E45B0D00354BD2 /* CurrentWeatherModel.swift */; };
+		74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */; };
+		74F31D1428E58F030096309D /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */; };
+		74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D1528E59D120096309D /* DetailsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		74AC639B28E43C2500354BD2 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
 		74AC639E28E4447300354BD2 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		74AC63A028E45B0D00354BD2 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
+		74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherViewController.swift; sourceTree = "<group>"; };
+		74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysCollectionViewCell.swift; sourceTree = "<group>"; };
+		74F31D1528E59D120096309D /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 			children = (
 				74AC638A28E2F4A900354BD2 /* App */,
 				74AC638C28E2F54B00354BD2 /* CurrentWeatherModule */,
+				74F31D0C28E47DFC0096309D /* FiveDayWeatherModule */,
 				74AC639D28E4445300354BD2 /* Services */,
 				74AC639328E3088100354BD2 /* Extensions */,
 				74AC638B28E2F4B900354BD2 /* Resourses */,
@@ -146,6 +153,32 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		74F31D0C28E47DFC0096309D /* FiveDayWeatherModule */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D0D28E47E130096309D /* View */,
+			);
+			path = FiveDayWeatherModule;
+			sourceTree = "<group>";
+		};
+		74F31D0D28E47E130096309D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D1228E58ED80096309D /* Cells */,
+				74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74F31D1228E58ED80096309D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D1328E58F030096309D /* DaysCollectionViewCell.swift */,
+				74F31D1528E59D120096309D /* DetailsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -218,12 +251,15 @@
 			files = (
 				74AC639228E3048800354BD2 /* Constants.swift in Sources */,
 				74AC637B28E2F0C300354BD2 /* CurrentWeatherViewController.swift in Sources */,
+				74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */,
 				74AC639C28E43C2500354BD2 /* CurrentWeatherData.swift in Sources */,
 				74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */,
 				74AC637928E2F0C300354BD2 /* SceneDelegate.swift in Sources */,
 				74AC638E28E2F5F800354BD2 /* CurrentWeatherPresenter.swift in Sources */,
 				74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */,
+				74F31D1428E58F030096309D /* DaysCollectionViewCell.swift in Sources */,
 				74AC639528E3089100354BD2 /* UIViewController+Preview.swift in Sources */,
+				74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */,
 				74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
