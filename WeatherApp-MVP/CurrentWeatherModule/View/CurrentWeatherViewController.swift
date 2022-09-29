@@ -140,3 +140,13 @@ extension CurrentWeatherViewController {
         ])
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct CurrentWeatherViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        CurrentWeatherViewController().showPreview()
+    }
+}
+#endif
