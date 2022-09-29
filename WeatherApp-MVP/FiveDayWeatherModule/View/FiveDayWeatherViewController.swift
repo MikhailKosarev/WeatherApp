@@ -24,7 +24,7 @@ final class FiveDayWeatherViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .green
+//        collectionView.backgroundColor = .green
         return collectionView
     }()
     
@@ -46,12 +46,11 @@ final class FiveDayWeatherViewController: UIViewController {
     
     // MARK: - Private methods
     private func setupView() {
-        view.backgroundColor = .yellow
         view.addSubview(cityLabel)
         view.addSubview(daysCollectionView)
         view.addSubview(detailsTableView)
         
-        daysCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "reuseID")
+        daysCollectionView.register(DaysCollectionViewCell.self.self, forCellWithReuseIdentifier: DaysCollectionViewCell.reuseID)
         detailsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "id")
     }
     
@@ -70,22 +69,27 @@ extension FiveDayWeatherViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: "reuseID", for: indexPath)
-        cell.backgroundColor = .blue
+        let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: DaysCollectionViewCell.reuseID, for: indexPath)
+//        cell.backgroundColor = .blue
+        print("ok")
         return cell
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension FiveDayWeatherViewController: UICollectionViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        100
+//    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FiveDayWeatherViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height: CGFloat = 200
+        let width: CGFloat = (view.bounds.width - 2 * Constants.spacing20) / 6
+        return CGSize(width: width, height: height)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -97,10 +101,8 @@ extension FiveDayWeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = detailsTableView.dequeueReusableCell(withIdentifier: "id") {
             cell.textLabel?.text = "cell \(indexPath.row)"
-            print("ok")
             return cell
         } else {
-            print("not ok")
             return UITableViewCell()
         }
     }
@@ -115,10 +117,10 @@ extension FiveDayWeatherViewController: UITableViewDelegate {
 extension FiveDayWeatherViewController {
     private func setConstraints() {
         // set margins
-        view.layoutMargins = UIEdgeInsets(top: Constants.defaultSpacing20,
-                                          left: Constants.defaultSpacing20,
-                                          bottom: Constants.defaultSpacing20,
-                                          right: Constants.defaultSpacing20)
+        view.layoutMargins = UIEdgeInsets(top: Constants.spacing20,
+                                          left: Constants.spacing20,
+                                          bottom: Constants.spacing20,
+                                          right: Constants.spacing20)
         let margins = view.layoutMarginsGuide
         
         // set constraints
@@ -127,7 +129,8 @@ extension FiveDayWeatherViewController {
             cityLabel.topAnchor.constraint(equalTo: margins.topAnchor),
             
             daysCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            daysCollectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor),
+            daysCollectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor,
+                                                    constant: Constants.spacing20),
             daysCollectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             daysCollectionView.heightAnchor.constraint(equalToConstant: 200),
             
