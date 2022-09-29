@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkServiceProtocol {
+protocol NetworkServiceProtocol: AnyObject {
     func getCurrentWeather(cityName: String, completion: @escaping(Result<CurrentWeatherData, Error>) -> Void)
 }
 

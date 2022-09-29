@@ -23,7 +23,7 @@ protocol CurrentWeatherPresenterProtocol: AnyObject {
 final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     weak var view: CurrentWeatherViewProtocol?
-    let networkService: NetworkServiceProtocol?
+    weak var networkService: NetworkServiceProtocol?
     
     required init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -31,7 +31,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     }
     
     func getWeather(for cityName: String) {
-        networkService?.getCurrentWeather(cityName: cityName) { [weak self ]  result in
+        networkService?.getCurrentWeather(cityName: cityName) { [weak self]  result in
             switch result {
             case .success(let currentWeatherData):
                 // get data
