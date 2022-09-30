@@ -125,10 +125,9 @@ extension FiveDayWeatherViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.reuseID) {
-            print(indexPath.row)
-            if let viewData = presenter?.getDetailsWeather(for: indexPath.row) {
-//                cell.configure(with: viewData)
+        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.reuseID) as? DetailsTableViewCell {
+            if let viewData = presenter?.getDetailsWeather(for: indexPath.section) {
+                cell.configure(with: viewData)
             }
             return cell
         } else {

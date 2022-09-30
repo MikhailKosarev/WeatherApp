@@ -74,6 +74,11 @@ final class DetailsTableViewCell: UITableViewCell {
     
     // MARK: - Public methods
     public func configure(with viewData: DetailWeatherViewData) {
-//        titleLabel.text = viewData.
+        tempMaxValueLabel.text = viewData.tempMaxString
+        feelsLikeValueLabel.text = viewData.feelsLikeString
+        tempMinValueLabel.text = viewData.tempMinString
+        humidityValueLabel.text = viewData.humidityString
+        windSpeedValueLabel.text = viewData.windSpeedString
+        pressureValueLabel.text = viewData.pressureString
     }
 }

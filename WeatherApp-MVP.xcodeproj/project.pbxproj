@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		747B89BB28E71E5800145AC7 /* DetailsTableViewCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747B89BA28E71E5800145AC7 /* DetailsTableViewCellViewData.swift */; };
 		747B89BE28E7225900145AC7 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747B89BD28E7225900145AC7 /* UILabel + Extensions.swift */; };
 		747B89C028E724B100145AC7 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747B89BF28E724B100145AC7 /* UIStackView + Extensions.swift */; };
 		74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC637628E2F0C300354BD2 /* AppDelegate.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		747B89BA28E71E5800145AC7 /* DetailsTableViewCellViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCellViewData.swift; sourceTree = "<group>"; };
 		747B89BD28E7225900145AC7 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		747B89BF28E724B100145AC7 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		74AC637328E2F0C300354BD2 /* WeatherApp-MVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherApp-MVP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,7 +198,6 @@
 				74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */,
 				74F31D1F28E5DC600096309D /* CityViewData.swift */,
 				74F31D2128E5DDE70096309D /* DetailWeatherViewData.swift */,
-				747B89BA28E71E5800145AC7 /* DetailsTableViewCellViewData.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 				74AC639228E3048800354BD2 /* Constants.swift in Sources */,
 				747B89C028E724B100145AC7 /* UIStackView + Extensions.swift in Sources */,
 				74AC637B28E2F0C300354BD2 /* CurrentWeatherViewController.swift in Sources */,
-				747B89BB28E71E5800145AC7 /* DetailsTableViewCellViewData.swift in Sources */,
 				74F31D1628E59D120096309D /* DetailsTableViewCell.swift in Sources */,
 				74F31D2028E5DC600096309D /* CityViewData.swift in Sources */,
 				74AC639C28E43C2500354BD2 /* CurrentWeatherData.swift in Sources */,
