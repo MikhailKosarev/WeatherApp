@@ -165,6 +165,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		74B1056E28E72B9C002F679B /* ViewData */ = {
+			isa = PBXGroup;
+			children = (
+				74F31D1F28E5DC600096309D /* CityViewData.swift */,
+				74F31D2128E5DDE70096309D /* DetailWeatherViewData.swift */,
+			);
+			path = ViewData;
+			sourceTree = "<group>";
+		};
 		74F31D0C28E47DFC0096309D /* FiveDayWeatherModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,8 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				74F31D1828E5A62A0096309D /* FiveDayWeatherPresenter.swift */,
-				74F31D1F28E5DC600096309D /* CityViewData.swift */,
-				74F31D2128E5DDE70096309D /* DetailWeatherViewData.swift */,
+				74B1056E28E72B9C002F679B /* ViewData */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
