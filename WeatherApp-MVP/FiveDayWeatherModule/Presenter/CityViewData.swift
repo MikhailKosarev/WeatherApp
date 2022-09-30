@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityModel {
+struct CityViewData {
     let name: String
     let country: String
     

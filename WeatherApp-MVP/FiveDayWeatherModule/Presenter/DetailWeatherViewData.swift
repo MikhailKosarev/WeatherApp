@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailWeatherModel {
+struct DetailWeatherViewData {
     let dateHeader: String
     let tempMax: Double
     let feelsLike: Double

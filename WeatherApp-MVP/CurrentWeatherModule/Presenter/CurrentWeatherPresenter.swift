@@ -16,7 +16,7 @@ protocol CurrentWeatherViewProtocol: UIViewController {
 protocol CurrentWeatherPresenterProtocol: AnyObject {
     init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol)
     
-    func getWeather(for cityName: String)
+    func getCurrentWeather(for cityName: String)
 }
 
 // presenter class
@@ -30,7 +30,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
         self.networkService = networkService
     }
     
-    func getWeather(for cityName: String) {
+    func getCurrentWeather(for cityName: String) {
         networkService?.getCurrentWeather(cityName: cityName) { [weak self]  result in
             switch result {
             case .success(let currentWeatherData):
