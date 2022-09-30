@@ -19,13 +19,13 @@ struct FiveDayWeatherData: Codable {
 struct City: Codable {
     let id: Int
     let name: String
-    let coord: Coord
+    let coord: FiveDayCoord
     let country: String
     let population, timezone, sunrise, sunset: Int
 }
 
 // MARK: - Coord
-struct Coord: Codable {
+struct FiveDayCoord: Codable {
     let lat, lon: Double
 }
 
@@ -33,12 +33,12 @@ struct Coord: Codable {
 struct List: Codable {
     let dt: Int
     let main: MainClass
-    let weather: [Weather]
-    let clouds: Clouds
-    let wind: Wind
+    let weather: [FiveDayWeather]
+    let clouds: FiveDayClouds
+    let wind: FiveDayWind
     let visibility: Int
     let pop: Double
-    let sys: Sys
+    let sys: FiveDaySys
     let dtTxt: String
     let rain: Rain?
 
@@ -50,7 +50,7 @@ struct List: Codable {
 }
 
 // MARK: - Clouds
-struct Clouds: Codable {
+struct FiveDayClouds: Codable {
     let all: Int
 }
 
@@ -83,7 +83,7 @@ struct Rain: Codable {
 }
 
 // MARK: - Sys
-struct Sys: Codable {
+struct FiveDaySys: Codable {
     let pod: Pod
 }
 
@@ -93,7 +93,7 @@ enum Pod: String, Codable {
 }
 
 // MARK: - Weather
-struct Weather: Codable {
+struct FiveDayWeather: Codable {
     let id: Int
     let main: MainEnum
     let weatherDescription, icon: String
@@ -112,7 +112,7 @@ enum MainEnum: String, Codable {
 }
 
 // MARK: - Wind
-struct Wind: Codable {
+struct FiveDayWind: Codable {
     let speed: Double
     let deg: Int
     let gust: Double

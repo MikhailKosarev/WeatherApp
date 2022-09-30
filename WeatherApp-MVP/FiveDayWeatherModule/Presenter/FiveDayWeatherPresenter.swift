@@ -9,8 +9,20 @@ import UIKit
 
 // input protocol
 protocol FiveDayWeatherViewProtocol: UIViewController {
-    func reloadDaysCollectionView(with dayWeatherModels: [DayWeatherModel])
-    func reloadDetailsTabelView(with detailWeatherModels: [DetailWeatherModel])
+//    func reloadDaysCollectionView(dayOfWeek: String,
+//                                  dayOfMonth: String,
+//                                  tempMaxString: String,
+//                                  tempMinString: String,
+//                                  pressureString: String,
+//                                  conditionName: String)
+//    
+//    func reloadDetailsTabelView(dateHeader: String,
+//                                tempMaxString: String,
+//                                feelsLikeString: String,
+//                                tempMinString: String,
+//                                humidityString: String,
+//                                windSpeedString: String,
+//                                pressureString: String)
 }
 
 // output protocol
@@ -30,22 +42,21 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         self.view = view
         self.networkService = networkService
     }
-    
+
     func getFiveDayWeather(for cityName: String) {
-            networkService?.getFiveDayWeather(cityName: cityName) { [weak self] result in
-                switch result {
-                case .success(let fivaDayWeatherData):
-                DispatchQueue.main.async {
-                    self?.view?.reloadDaysCollectionView(with: [DayWeatherModel])
-                }
-                case .failure(let error):
-                    print(error)
+        networkService?.getFiveDayWeather(cityName: cityName) { result in
+            switch result {
+            case .success(let fiveDayWeatherData):
+                print("successful")
+                print(fiveDayWeatherData)
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
     func getDetailWeatherFor(dayNumber: Int, city cityName: String) {
-        view?.reloadDetailsTabelView(with: [DetailWeatherModel])
+//        view?.reloadDetailsTabelView(with: [DetailWeatherModel])
     }
     
     

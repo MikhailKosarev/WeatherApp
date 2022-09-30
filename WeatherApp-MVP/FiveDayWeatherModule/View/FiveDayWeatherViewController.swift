@@ -41,6 +41,8 @@ final class FiveDayWeatherViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - Public properties
+    public var presenter: FiveDayWeatherPresenterProtocol?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -70,6 +72,11 @@ final class FiveDayWeatherViewController: UIViewController {
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
     }
+}
+
+// MARK: - FiveDayWeatherViewProtocol
+extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
+    
 }
 
 // MARK: - UICollectionViewDataSource
