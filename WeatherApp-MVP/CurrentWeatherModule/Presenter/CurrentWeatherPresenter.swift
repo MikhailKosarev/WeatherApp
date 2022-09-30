@@ -35,13 +35,13 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
             switch result {
             case .success(let currentWeatherData):
                 // get data
-                let cityName = currentWeatherData.name
-                let temperature = currentWeatherData.main.temp
-                let conditionId = currentWeatherData.weather[0].id
+//                let cityName = currentWeatherData.name
+//                let temperature = currentWeatherData.main.temp
+//                let conditionId = currentWeatherData.weather[0].id
                 // write the model
-                let currentWeather = CurrentWeatherModel(cityName: cityName,
-                                                       temperature: temperature,
-                                                       conditionId: conditionId)
+                let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
+                                                       temperature: currentWeatherData.main.temp,
+                                                       conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
                     

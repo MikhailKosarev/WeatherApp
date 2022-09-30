@@ -26,7 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window?.rootViewController = view
 //        window?.makeKeyAndVisible()
         
-        window?.rootViewController = FiveDayWeatherViewController()
+        
+        let view = FiveDayWeatherViewController()
+        let networkService = NetworkService()
+        let presenter = FiveDayWeatherPresenter(view: view, networkService: networkService)
+        view.presenter = presenter
+        window?.rootViewController = view
         window?.makeKeyAndVisible()
     }
 
