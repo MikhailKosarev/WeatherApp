@@ -28,13 +28,6 @@ final class FiveDayWeatherViewController: UIViewController {
         return label
     }()
     
-    private let daysCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
-    
     private let detailsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,19 +50,14 @@ final class FiveDayWeatherViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
-        view.addSubview(daysCollectionView)
         view.addSubview(detailsTableView)
-        
-        daysCollectionView.register(DaysCollectionViewCell.self.self,
-                                    forCellWithReuseIdentifier: DaysCollectionViewCell.reuseID)
+
         detailsTableView.register(DetailsTableViewCell.self,
                                   forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }
     
     private func setDelegates() {
         citySearchBar.delegate = self
-        daysCollectionView.dataSource = self
-        daysCollectionView.delegate = self
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
     }
@@ -108,31 +96,6 @@ extension FiveDayWeatherViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UICollectionViewDataSource
-extension FiveDayWeatherViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = daysCollectionView.dequeueReusableCell(withReuseIdentifier: DaysCollectionViewCell.reuseID, for: indexPath)
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension FiveDayWeatherViewController: UICollectionViewDelegate {
-
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension FiveDayWeatherViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = 200
-        let width: CGFloat = (view.bounds.width - 2 * Constants.spacing20) / 6
-        return CGSize(width: width, height: height)
-    }
-}
 
 // MARK: - UITableViewDataSource
 extension FiveDayWeatherViewController: UITableViewDataSource {
@@ -181,15 +144,9 @@ extension FiveDayWeatherViewController {
             
             cityLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor),
             cityLabel.topAnchor.constraint(equalTo: citySearchBar.bottomAnchor, constant: Constants.spacing10),
-            
-            daysCollectionView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            daysCollectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor,
-                                                    constant: Constants.spacing20),
-            daysCollectionView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            daysCollectionView.heightAnchor.constraint(equalToConstant: 200),
-            
+
             detailsTableView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            detailsTableView.topAnchor.constraint(equalTo: daysCollectionView.bottomAnchor),
+            detailsTableView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: Constants.spacing20),
             detailsTableView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             detailsTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
         ])
