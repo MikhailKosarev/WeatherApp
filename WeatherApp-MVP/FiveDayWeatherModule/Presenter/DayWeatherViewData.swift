@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DayWeatherModel {
+struct DayWeatherViewData {
     //TODO: date logic
     let dayOfWeek: String = "Fr"
     let dayOfMonth: String = "29"

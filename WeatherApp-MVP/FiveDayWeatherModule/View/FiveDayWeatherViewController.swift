@@ -67,6 +67,7 @@ final class FiveDayWeatherViewController: UIViewController {
     }
     
     private func setDelegates() {
+        citySearchBar.delegate = self
         daysCollectionView.dataSource = self
         daysCollectionView.delegate = self
         detailsTableView.dataSource = self
@@ -76,7 +77,35 @@ final class FiveDayWeatherViewController: UIViewController {
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
+    func reloadCityLabel(with city: String) {
+        cityLabel.text = city
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension FiveDayWeatherViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // make request with city name
+        if let cityName = searchBar.text {
+            presenter?.getFiveDayWeather(for: cityName)
+        } else {
+            searchBar.placeholder = "print the city name here"
+        }
+
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
 }
 
 // MARK: - UICollectionViewDataSource

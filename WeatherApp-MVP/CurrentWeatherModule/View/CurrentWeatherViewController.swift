@@ -95,7 +95,7 @@ extension CurrentWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // make request with city name
         if let cityName = searchBar.text {
-            presenter?.getWeather(for: cityName)
+            presenter?.getCurrentWeather(for: cityName)
         } else {
             searchBar.placeholder = "print the city name here"
         }
