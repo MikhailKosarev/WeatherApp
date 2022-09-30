@@ -9,7 +9,10 @@ import UIKit
 
 // input protocol
 protocol FiveDayWeatherViewProtocol: UIViewController {
-    func reloadCityLabel(with city: String)
+    func updateCityLabel(with city: String)
+//    func updateWeatherHeader(with header: String)
+    func updateDetailsWeather(with viewData: DetailWeatherViewData?)
+    func reloadDetailTableView()
 //    func reloadDaysCollectionView(dayOfWeek: String,
 //                                  dayOfMonth: String,
 //                                  tempMaxString: String,
@@ -33,8 +36,8 @@ protocol FiveDayWeatherPresenterProtocol: AnyObject {
     
     func getFiveDayWeather(for cityName: String)
     func getDataForCitylabel()
-    
-    func getDetailWeatherFor(dayNumber: Int, city cityName: String)
+    func getSectionHeader(for section: Int) -> String
+    func getDetailsWeather(for index: Int) -> DetailWeatherViewData?
 }
 
 // MARK: - FiveDayWeatherPresenter
@@ -50,13 +53,13 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     }
 
     func getFiveDayWeather(for cityName: String) {
-        print(networkService)
         networkService.getFiveDayWeather(cityName: cityName) { [weak self] result in
             switch result {
             case .success(let fiveDayWeatherData):
                 // reload citylabel
                 self?.fiveDayWeatherData = fiveDayWeatherData
                 self?.getDataForCitylabel()
+                self?.view?.reloadDetailTableView()
                 // reload daysCollectionView
                 
                 // reload detailsTableView
@@ -73,13 +76,26 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         let cityViewData = CityViewData(name: fiveDayWeatherData.city.name,
                                         country: fiveDayWeatherData.city.country)
         DispatchQueue.main.async {
-            self.view?.reloadCityLabel(with: cityViewData.fullCityName)
+            self.view?.updateCityLabel(with: cityViewData.fullCityName)
         }
     }
     
-    func getDetailWeatherFor(dayNumber: Int, city cityName: String) {
-//        view?.reloadDetailsTabelView(with: [DetailWeatherModel])
+    func getSectionHeader(for section: Int) -> String {
+        guard let fiveDayWeatherData else { return "default" }
+        let header = fiveDayWeatherData.list[section].dtTxt
+        return header
     }
     
-    
+    func getDetailsWeather(for index: Int) -> DetailWeatherViewData? {
+        guard let fiveDayWeatherData else { return nil }
+        let currentList = fiveDayWeatherData.list[index]
+        
+        let detailWeatherViewData = DetailWeatherViewData(tempMax: currentList.main.tempMax,
+                                                          feelsLike: currentList.main.feelsLike,
+                                                          tempMin: currentList.main.tempMin,
+                                                          humidity: currentList.main.humidity,
+                                                          windSpeed: currentList.wind.speed,
+                                                          pressure: currentList.main.pressure)
+        return detailWeatherViewData
+    }
 }

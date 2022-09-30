@@ -8,7 +8,6 @@
 import Foundation
 
 struct DetailWeatherViewData {
-    let dateHeader: String
     let tempMax: Double
     let feelsLike: Double
     let tempMin: Double
@@ -17,15 +16,15 @@ struct DetailWeatherViewData {
     let pressure: Int
     
     var tempMaxString: String {
-        return String(format: "%.2f", tempMax)
+        return String(format: "%.1f", tempMax) + "°C"
     }
     
     var feelsLikeString: String {
-        return String(format: "%.2f", feelsLike)
+        return String(format: "%.1f", feelsLike) + "°C"
     }
     
     var tempMinString: String {
-        return String(format: "%.2f", tempMin)
+        return String(format: "%.1f", tempMin) + "°C"
     }
     
     var humidityString: String {
@@ -33,10 +32,10 @@ struct DetailWeatherViewData {
     }
     
     var windSpeedString: String {
-        return String(windSpeed)
+        return String(windSpeed) + " m/s"
     }
     
     var pressureString: String {
-        return String(pressure)
+        return String(pressure) + " hPa"
     }
 }

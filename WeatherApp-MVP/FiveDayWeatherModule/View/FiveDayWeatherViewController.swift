@@ -65,8 +65,19 @@ final class FiveDayWeatherViewController: UIViewController {
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
-    func reloadCityLabel(with city: String) {
+    func updateCityLabel(with city: String) {
         cityLabel.text = city
+    }
+    
+
+    
+    func updateDetailsWeather(with viewData: DetailWeatherViewData?) {
+    }
+    
+    func reloadDetailTableView() {
+        DispatchQueue.main.async { [weak self] in
+            self?.detailsTableView.reloadData()
+        }
     }
 }
 
@@ -74,12 +85,13 @@ extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
 extension FiveDayWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // make request with city name
+        
         if let cityName = searchBar.text {
             presenter?.getFiveDayWeather(for: cityName)
         } else {
             searchBar.placeholder = "print the city name here"
         }
-
+        
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
@@ -100,19 +112,23 @@ extension FiveDayWeatherViewController: UISearchBarDelegate {
 // MARK: - UITableViewDataSource
 extension FiveDayWeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Header \(section)"
+//        return "Header \(section)"
+        return presenter?.getSectionHeader(for: section)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        5
+        return presenter?.fiveDayWeatherData?.list.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.reuseID) {
+        if let cell = detailsTableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.reuseID) as? DetailsTableViewCell {
+            if let viewData = presenter?.getDetailsWeather(for: indexPath.section) {
+                cell.configure(with: viewData)
+            }
             return cell
         } else {
             return UITableViewCell()
