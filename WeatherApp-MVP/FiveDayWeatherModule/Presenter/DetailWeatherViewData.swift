@@ -8,7 +8,6 @@
 import Foundation
 
 struct DetailWeatherViewData {
-    let dateHeader: String
     let tempMax: Double
     let feelsLike: Double
     let tempMin: Double
