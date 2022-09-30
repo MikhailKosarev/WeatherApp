@@ -77,7 +77,9 @@ final class FiveDayWeatherViewController: UIViewController {
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
-    
+    func reloadCityLabel(with city: String) {
+        cityLabel.text = city
+    }
 }
 
 // MARK: - UISearchBarDelegate
