@@ -21,4 +21,8 @@ public struct Constants {
     
     // default corner radiuses
     static let radius10: CGFloat = 10
+    
+    // tabBar images
+    static let currentImageSystemName = "clock.arrow.circlepath"
+    static let fiveDaySystemName = "goforward.5"
 }

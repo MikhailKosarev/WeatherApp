@@ -20,8 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
 //        let currentWeatherModule = ModuleBulder.createCurrentWeatherModule()
-        let fiveDayWeatherModule = ModuleBulder.createFiveDayWeatherModule()
-        window?.rootViewController = fiveDayWeatherModule
+//        let fiveDayWeatherModule = ModuleBulder.createFiveDayWeatherModule()
+//        window?.rootViewController = fiveDayWeatherModule
+        window?.rootViewController = MainTabBarController()
         window?.makeKeyAndVisible()
     }
 
