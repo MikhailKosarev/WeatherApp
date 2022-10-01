@@ -24,5 +24,5 @@ public struct Constants {
     
     // tabBar images
     static let currentImageSystemName = "clock.arrow.circlepath"
-    static let fiveDaySystemName = "5.circle"
+    static let fiveDaySystemName = "goforward.5"
 }
