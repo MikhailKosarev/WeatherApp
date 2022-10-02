@@ -55,7 +55,7 @@ final class CurrentWeatherViewController: UIViewController {
                                                       conditionImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = Constants.defaultSpacing40
+        stackView.spacing = Constants.spacing40
         return stackView
     }()
     
@@ -95,7 +95,7 @@ extension CurrentWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // make request with city name
         if let cityName = searchBar.text {
-            presenter?.getWeather(for: cityName)
+            presenter?.getCurrentWeather(for: cityName)
         } else {
             searchBar.placeholder = "print the city name here"
         }
@@ -120,10 +120,10 @@ extension CurrentWeatherViewController: UISearchBarDelegate {
 extension CurrentWeatherViewController {
     private func setConstraints() {
         // set margins
-        view.layoutMargins = UIEdgeInsets(top: Constants.defaultSpacing20,
-                                          left: Constants.defaultSpacing20,
-                                          bottom: Constants.defaultSpacing20,
-                                          right: Constants.defaultSpacing20)
+        view.layoutMargins = UIEdgeInsets(top: Constants.spacing20,
+                                          left: Constants.spacing20,
+                                          bottom: Constants.spacing20,
+                                          right: Constants.spacing20)
         let margins = view.layoutMarginsGuide
         
         // set priorities
@@ -140,3 +140,13 @@ extension CurrentWeatherViewController {
         ])
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct CurrentWeatherViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        CurrentWeatherViewController().showPreview()
+    }
+}
+#endif
