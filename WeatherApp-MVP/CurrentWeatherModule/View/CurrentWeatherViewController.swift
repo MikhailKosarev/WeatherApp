@@ -55,6 +55,7 @@ final class CurrentWeatherViewController: UIViewController {
                                                       conditionImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.setCustomSpacing(Constants.spacing10, after: citySearchBar)
         stackView.spacing = Constants.spacing40
         return stackView
     }()
