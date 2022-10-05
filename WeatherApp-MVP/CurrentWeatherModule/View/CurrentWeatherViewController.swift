@@ -84,6 +84,10 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
+    func showAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
+    }
+    
     func reloadWeather(city: String, degree: String, condition: String) {
         cityLabel.text = city
         degreeLabel.text = degree

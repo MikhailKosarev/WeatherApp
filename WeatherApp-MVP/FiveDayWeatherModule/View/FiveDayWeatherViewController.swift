@@ -69,15 +69,14 @@ extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
         cityLabel.text = city
     }
     
-
-    
-    func updateDetailsWeather(with viewData: DetailWeatherViewData?) {
-    }
-    
     func reloadDetailTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.detailsTableView.reloadData()
         }
+    }
+    
+    func showAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
     }
 }
 
