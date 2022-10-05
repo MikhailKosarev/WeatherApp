@@ -10,7 +10,7 @@ import UIKit
 // an input protocol
 protocol CurrentWeatherViewProtocol: UIViewController {
     func reloadWeather(city: String, degree: String, condition: String)
-    func presentAlert(alert: UIAlertController)
+    func showAlert(_ alert: UIAlertController)
 }
 
 // an output protocol
@@ -47,8 +47,8 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
             case .success(let currentWeatherData):
                 // write the model
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
-                                                       temperature: currentWeatherData.main.temp,
-                                                       conditionId: currentWeatherData.weather[0].id)
+                                                         temperature: currentWeatherData.main.temp,
+                                                         conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
                     self?.view?.reloadWeather(city: currentWeather.cityName,
@@ -56,15 +56,12 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                                               condition: currentWeather.conditionName)
                 }
             case .failure(let error):
-                if let alert = self?.makeAlert() {
-                    DispatchQueue.main.async {
-                        self?.view?.presentAlert(alert: alert)
-                    }
-
+                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                DispatchQueue.main.async {
+                    self?.view?.showAlert(alert)
                 }
                 print(error)
             }
         }
     }
-    
 }

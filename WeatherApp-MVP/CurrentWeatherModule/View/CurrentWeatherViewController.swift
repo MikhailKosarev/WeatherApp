@@ -84,7 +84,7 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
-    func presentAlert(alert: UIAlertController) {
+    func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
     
