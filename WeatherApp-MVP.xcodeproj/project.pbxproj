@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7419F8DD28ED845D00049707 /* UIAlertController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419F8DC28ED845D00049707 /* UIAlertController + Extensions.swift */; };
+		7419F8E028ED8C4C00049707 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419F8DF28ED8C4C00049707 /* BaseUrl.swift */; };
 		747B89BE28E7225900145AC7 /* UILabel + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747B89BD28E7225900145AC7 /* UILabel + Extensions.swift */; };
 		747B89C028E724B100145AC7 /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747B89BF28E724B100145AC7 /* UIStackView + Extensions.swift */; };
 		74AC637728E2F0C300354BD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC637628E2F0C300354BD2 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		7419F8DC28ED845D00049707 /* UIAlertController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController + Extensions.swift"; sourceTree = "<group>"; };
+		7419F8DF28ED8C4C00049707 /* BaseUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
 		747B89BD28E7225900145AC7 /* UILabel + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions.swift"; sourceTree = "<group>"; };
 		747B89BF28E724B100145AC7 /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
 		74AC637328E2F0C300354BD2 /* WeatherApp-MVP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeatherApp-MVP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7419F8E128ED8CDF00049707 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7419F8DF28ED8C4C00049707 /* BaseUrl.swift */,
+				74AC639E28E4447300354BD2 /* NetworkServices.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		74AC636A28E2F0C300354BD2 = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +180,7 @@
 		74AC639D28E4445300354BD2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				74AC639E28E4447300354BD2 /* NetworkServices.swift */,
+				7419F8E128ED8CDF00049707 /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -321,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7419F8E028ED8C4C00049707 /* BaseUrl.swift in Sources */,
 				74AC639228E3048800354BD2 /* Constants.swift in Sources */,
 				747B89C028E724B100145AC7 /* UIStackView + Extensions.swift in Sources */,
 				74AC637B28E2F0C300354BD2 /* CurrentWeatherViewController.swift in Sources */,

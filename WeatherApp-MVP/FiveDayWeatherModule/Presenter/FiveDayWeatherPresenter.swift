@@ -38,7 +38,7 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     }
 
     func getFiveDayWeather(for cityName: String) {
-        networkService.getFiveDayWeather(cityName: cityName) { [weak self] result in
+        networkService.getWeather(type: BaseUrl.fiveDayWeather, cityName: cityName) { [weak self] (result: Result<FiveDayWeatherData, Error>) in
             switch result {
             case .success(let fiveDayWeatherData):
                 // reload citylabel
