@@ -42,10 +42,11 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     // MARK: - Public methods
     public func getCurrentWeather(for cityName: String) {
-        networkService.getCurrentWeather(cityName: cityName) { [weak self]  result in
+        networkService.getWeather(type: BaseUrl.currentWeather, cityName: cityName) { [weak self] (result: Result<CurrentWeatherData, Error>) in
             switch result {
             case .success(let currentWeatherData):
                 // write the model
+                print(currentWeatherData)
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
                                                          temperature: currentWeatherData.main.temp,
                                                          conditionId: currentWeatherData.weather[0].id)
@@ -63,5 +64,16 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 print(error)
             }
         }
+        
+//        let networkNew = NetworkNew()
+//        networkNew.getWeather(type: BaseUrl.currentWeather, cityName: cityName) { [weak self] (result: Result<CurrentWeatherData, Error>) in
+//            switch result {
+//            case .success(let currentWeatherData):
+//                print("2")
+//                print(currentWeatherData)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 }
