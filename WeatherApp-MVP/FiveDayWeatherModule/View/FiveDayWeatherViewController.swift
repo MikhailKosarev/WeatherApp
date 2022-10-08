@@ -52,6 +52,11 @@ final class FiveDayWeatherViewController: UIViewController {
         view.addSubview(cityLabel)
         view.addSubview(detailsTableView)
 
+        
+        let userDefaults = UserDefaults.standard
+        let test = userDefaults.string(forKey: Constants.savedCityName)
+        print(test)
+        
         detailsTableView.register(DetailsTableViewCell.self,
                                   forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }
