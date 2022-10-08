@@ -43,6 +43,12 @@ final class FiveDayWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+        presenter?.loadWeatherForSavedCity()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadWeatherForSavedCity()
     }
     
     // MARK: - Private methods
@@ -51,7 +57,7 @@ final class FiveDayWeatherViewController: UIViewController {
         view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
         view.addSubview(detailsTableView)
-
+    
         detailsTableView.register(DetailsTableViewCell.self,
                                   forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }

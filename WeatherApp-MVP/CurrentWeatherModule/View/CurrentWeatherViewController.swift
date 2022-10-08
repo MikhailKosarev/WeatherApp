@@ -70,6 +70,11 @@ final class CurrentWeatherViewController: UIViewController {
         setDelegates()
         setConstraints()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadWeatherForSavedCity()
+    }
     
     // MARK: - Private methods
     private func setupView() {
