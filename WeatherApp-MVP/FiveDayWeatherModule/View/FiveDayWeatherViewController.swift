@@ -46,17 +46,18 @@ final class FiveDayWeatherViewController: UIViewController {
         presenter?.loadWeatherForSavedCity()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadWeatherForSavedCity()
+    }
+    
     // MARK: - Private methods
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
         view.addSubview(detailsTableView)
-        
-        let userDefaults = UserDefaults.standard
-        let test = userDefaults.string(forKey: Constants.savedCityName)
-        print(test)
-        
+    
         detailsTableView.register(DetailsTableViewCell.self,
                                   forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }

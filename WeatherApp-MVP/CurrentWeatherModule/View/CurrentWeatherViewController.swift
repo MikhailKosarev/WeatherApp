@@ -69,6 +69,10 @@ final class CurrentWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter?.loadWeatherForSavedCity()
     }
     
