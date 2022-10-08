@@ -17,6 +17,7 @@ protocol CurrentWeatherViewProtocol: UIViewController {
 protocol CurrentWeatherPresenterProtocol: AnyObject {
     init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol)
     func makeAlert() -> UIAlertController
+    func loadWeatherForSavedCity()
     func saveCityName(_ cityName: String)
     func getCurrentWeather(for cityName: String)
 }
@@ -46,6 +47,12 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     }
     
     // MARK: - Public methods
+    public func loadWeatherForSavedCity() {
+        let userDefaults = UserDefaults.standard
+        guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
+        getCurrentWeather(for: cityName)
+    }
+    
     public func getCurrentWeather(for cityName: String) {
         // save cityName
         saveCityName(cityName)
@@ -73,16 +80,5 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 print(error)
             }
         }
-        
-//        let networkNew = NetworkNew()
-//        networkNew.getWeather(type: BaseUrl.currentWeather, cityName: cityName) { [weak self] (result: Result<CurrentWeatherData, Error>) in
-//            switch result {
-//            case .success(let currentWeatherData):
-//                print("2")
-//                print(currentWeatherData)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
 }

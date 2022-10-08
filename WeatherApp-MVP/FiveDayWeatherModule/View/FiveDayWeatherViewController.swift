@@ -43,6 +43,7 @@ final class FiveDayWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+        presenter?.loadWeatherForSavedCity()
     }
     
     // MARK: - Private methods
@@ -51,7 +52,6 @@ final class FiveDayWeatherViewController: UIViewController {
         view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
         view.addSubview(detailsTableView)
-
         
         let userDefaults = UserDefaults.standard
         let test = userDefaults.string(forKey: Constants.savedCityName)

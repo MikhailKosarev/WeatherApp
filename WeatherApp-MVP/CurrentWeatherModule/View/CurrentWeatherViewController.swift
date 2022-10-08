@@ -69,6 +69,7 @@ final class CurrentWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+        presenter?.loadWeatherForSavedCity()
     }
     
     // MARK: - Private methods

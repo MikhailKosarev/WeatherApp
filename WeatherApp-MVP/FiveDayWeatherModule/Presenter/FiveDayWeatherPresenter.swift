@@ -18,7 +18,10 @@ protocol FiveDayWeatherViewProtocol: UIViewController {
 protocol FiveDayWeatherPresenterProtocol: AnyObject {
     var fiveDayWeatherData: FiveDayWeatherData? {get set}
     init(view: FiveDayWeatherViewProtocol, networkService: NetworkServiceProtocol)
+
+    func saveCityName(_ cityName: String)
     
+    func loadWeatherForSavedCity()
     func getFiveDayWeather(for cityName: String)
     func getDataForCitylabel()
     func getSectionHeader(for section: Int) -> String
@@ -37,7 +40,22 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         self.networkService = networkService
     }
 
+    internal func saveCityName(_ cityName: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(cityName, forKey: Constants.savedCityName)
+    }
+    
+    func loadWeatherForSavedCity() {
+        let userDefaults = UserDefaults.standard
+        guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
+        getFiveDayWeather(for: cityName)
+    }
+    
     func getFiveDayWeather(for cityName: String) {
+        // save cityName
+        saveCityName(cityName)
+        
+        // get data
         networkService.getWeather(type: BaseUrl.fiveDayWeather, cityName: cityName) { [weak self] (result: Result<FiveDayWeatherData, Error>) in
             switch result {
             case .success(let fiveDayWeatherData):
