@@ -9,6 +9,7 @@ import UIKit
 
 // an input protocol
 protocol CurrentWeatherViewProtocol: UIViewController {
+    func locationButtonTapped()
     func reloadWeather(city: String, degree: String, condition: String)
     func showAlert(_ alert: UIAlertController)
 }

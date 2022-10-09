@@ -9,6 +9,7 @@ import UIKit
 
 // input protocol
 protocol FiveDayWeatherViewProtocol: UIViewController {
+    func locationButtonTapped()
     func updateCityLabel(with city: String)
     func reloadDetailTableView()
     func showAlert(_ alert: UIAlertController)

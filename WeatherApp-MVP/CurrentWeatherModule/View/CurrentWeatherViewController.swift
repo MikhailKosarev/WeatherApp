@@ -10,6 +10,15 @@ import UIKit
 final class CurrentWeatherViewController: UIViewController {
     
     // MARK: - Declare UI elements
+    private lazy var locationButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(UIImage(systemName: Constants.locationImageSystemName), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     private let citySearchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -48,8 +57,13 @@ final class CurrentWeatherViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var locSearchStackView = UIStackView(arrangedSubviews: [citySearchBar,
+                                                                         locationButton],
+                                                      axis: .horizontal)
+    
     private lazy var currentStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [citySearchBar,
+        let stackView = UIStackView(arrangedSubviews: [//citySearchBar,
+            locSearchStackView,
                                                       cityLabel,
                                                       degreeLabel,
                                                       conditionImageView])
@@ -89,6 +103,10 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
+    @objc func locationButtonTapped() {
+        print(#function)
+    }
+    
     func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
@@ -143,6 +161,9 @@ extension CurrentWeatherViewController {
         
         // set constraints
         NSLayoutConstraint.activate([
+            locationButton.heightAnchor.constraint(equalToConstant: 40),
+            locationButton.widthAnchor.constraint(equalToConstant: 40),
+            
             currentStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             currentStackView.topAnchor.constraint(equalTo: margins.topAnchor),
             currentStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),

@@ -26,6 +26,9 @@ public struct Constants {
     static let currentImageSystemName = "clock.arrow.circlepath"
     static let fiveDaySystemName = "goforward.5"
     
+    // location image
+    static let locationImageSystemName = "location.circle"
+    
     // userDefaults keys
     static let savedCityName = ""
 }
