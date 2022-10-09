@@ -63,7 +63,6 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
             switch result {
             case .success(let currentWeatherData):
                 // write the model
-                print(currentWeatherData)
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
                                                          temperature: currentWeatherData.main.temp,
                                                          conditionId: currentWeatherData.weather[0].id)

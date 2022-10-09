@@ -30,7 +30,6 @@ final class CurrentWeatherViewController: UIViewController {
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Current city"
         label.font = Constants.systemFont50
         label.textColor = .label
         label.textAlignment = .center
@@ -40,7 +39,6 @@ final class CurrentWeatherViewController: UIViewController {
     private let degreeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "+16°C"
         label.font = Constants.systemFont80
         label.textColor = .label
         label.textAlignment = .center
@@ -50,8 +48,6 @@ final class CurrentWeatherViewController: UIViewController {
     private let conditionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(systemName: "cloud.drizzle")
-        imageView.image = image
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .black
         return imageView
@@ -62,14 +58,13 @@ final class CurrentWeatherViewController: UIViewController {
                                                       axis: .horizontal)
     
     private lazy var currentStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [//citySearchBar,
-            locSearchStackView,
+        let stackView = UIStackView(arrangedSubviews: [locSearchStackView,
                                                       cityLabel,
                                                       degreeLabel,
                                                       conditionImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.setCustomSpacing(Constants.spacing10, after: citySearchBar)
+        stackView.setCustomSpacing(Constants.spacing10, after: locSearchStackView)
         stackView.spacing = Constants.spacing40
         return stackView
     }()
