@@ -129,7 +129,7 @@ extension CurrentWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // make request with city name
         if let cityName = searchBar.text {
-            presenter?.getCurrentWeather(for: cityName)
+            presenter?.getCurrentWeatherCity(for: cityName)
         } else {
             searchBar.placeholder = "print the city name here"
         }
@@ -156,7 +156,7 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         let lat = location.coordinate.latitude
         let lon = location.coordinate.longitude
-        print((lat, lon))
+        presenter?.getCurrentWeatherCoordinates(latitude: lat, longitude: lon)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

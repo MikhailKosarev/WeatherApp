@@ -57,7 +57,7 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         saveCityName(cityName)
         
         // get data
-        networkService.getWeather(type: BaseUrl.fiveDayWeather, cityName: cityName) { [weak self] (result: Result<FiveDayWeatherData, Error>) in
+        networkService.getWeatherCity(type: BaseUrl.fiveDayWeatherCity, cityName: cityName) { [weak self] (result: Result<FiveDayWeatherData, Error>) in
             switch result {
             case .success(let fiveDayWeatherData):
                 // reload citylabel
