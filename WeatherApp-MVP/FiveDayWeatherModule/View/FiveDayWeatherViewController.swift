@@ -59,12 +59,12 @@ final class FiveDayWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
-        presenter?.loadWeatherForSavedCity()
+        presenter?.loadWeatherForSavedCityName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.loadWeatherForSavedCity()
+        presenter?.loadSavedWeather()
     }
     
     // MARK: - Private methods

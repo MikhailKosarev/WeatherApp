@@ -20,9 +20,14 @@ protocol FiveDayWeatherPresenterProtocol: AnyObject {
     var fiveDayWeatherData: FiveDayWeatherData? {get set}
     init(view: FiveDayWeatherViewProtocol, networkService: NetworkServiceProtocol)
 
+    // internal
+    func saveCityCoordinates(lat: Double, lon: Double)
     func saveCityName(_ cityName: String)
+    func loadWeatherForSavedCityName()
+    func loadWeatherForSavedCityCoordinates()
     
-    func loadWeatherForSavedCity()
+    // public
+    func loadSavedWeather()
     func getFiveDayWeatherCity(for cityName: String)
     func getFiveDayWeatherCoordinates(latitude lat: Double, longitude lon: Double)
     func getDataForCitylabel()
@@ -36,24 +41,48 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     
     weak var view: FiveDayWeatherViewProtocol?
     var networkService: NetworkServiceProtocol
+    let userDefaults = UserDefaults.standard
     
     required init(view: FiveDayWeatherViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
         self.networkService = networkService
     }
-
+    
+    // MARK: - Internal methods
+    internal func saveCityCoordinates(lat: Double, lon: Double) {
+        userDefaults.set("coordinates", forKey: Constants.weatherSavedType)
+        userDefaults.set(lat, forKey: Constants.savedCityLatitude)
+        userDefaults.set(lon, forKey: Constants.savedCityLongitude)
+    }
+    
     internal func saveCityName(_ cityName: String) {
-        let userDefaults = UserDefaults.standard
+        userDefaults.set("name", forKey: Constants.weatherSavedType)
         userDefaults.set(cityName, forKey: Constants.savedCityName)
     }
     
-    func loadWeatherForSavedCity() {
-        let userDefaults = UserDefaults.standard
+    internal func loadWeatherForSavedCityName() {
         guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
         getFiveDayWeatherCity(for: cityName)
     }
     
-    func getFiveDayWeatherCity(for cityName: String) {
+    internal func loadWeatherForSavedCityCoordinates() {
+        let lat = userDefaults.double(forKey: Constants.savedCityLatitude)
+        let lon = userDefaults.double(forKey: Constants.savedCityLongitude)
+        getFiveDayWeatherCoordinates(latitude: lat, longitude: lon)
+    }
+    
+    // MARK: - Public methods
+    public func loadSavedWeather() {
+        guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
+        print(currentWeatherSavedType)
+        if currentWeatherSavedType == "name" {
+            loadWeatherForSavedCityName()
+        } else {
+            loadWeatherForSavedCityCoordinates()
+        }
+    }
+    
+    public func getFiveDayWeatherCity(for cityName: String) {
         // save cityName
         saveCityName(cityName)
         
@@ -77,8 +106,8 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     }
     
     public func getFiveDayWeatherCoordinates(latitude lat: Double, longitude lon: Double) {
-        // save cityName
-        //        saveCityName(cityName)
+        // save city coordinates
+        saveCityCoordinates(lat: lat, lon: lon)
         
         let latString = String(lat)
         let lonString = String(lon)
@@ -103,7 +132,7 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         }
     }
     
-    func getDataForCitylabel() {
+    public func getDataForCitylabel() {
         guard let fiveDayWeatherData else { return }
         let cityViewData = CityViewData(name: fiveDayWeatherData.city.name,
                                         country: fiveDayWeatherData.city.country)
@@ -112,13 +141,13 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         }
     }
     
-    func getSectionHeader(for section: Int) -> String {
+    public func getSectionHeader(for section: Int) -> String {
         guard let fiveDayWeatherData else { return "default" }
         let header = fiveDayWeatherData.list[section].dtTxt
         return header
     }
     
-    func getDetailsWeather(for index: Int) -> DetailWeatherViewData? {
+    public func getDetailsWeather(for index: Int) -> DetailWeatherViewData? {
         guard let fiveDayWeatherData else { return nil }
         let currentList = fiveDayWeatherData.list[index]
         

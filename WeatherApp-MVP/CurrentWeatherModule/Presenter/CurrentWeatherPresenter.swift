@@ -17,15 +17,15 @@ protocol CurrentWeatherViewProtocol: UIViewController {
 // an output protocol
 protocol CurrentWeatherPresenterProtocol: AnyObject {
     init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol)
+    
     // internal
     func makeAlert() -> UIAlertController
-    
-    func saveCityName(_ cityName: String)
-    
-    // public
     func saveCityCoordinates(lat: Double, lon: Double)
+    func saveCityName(_ cityName: String)
     func loadWeatherForSavedCityName()
     func loadSavedWeather()
+    
+    // public
     func getCurrentWeatherCity(for cityName: String)
     func getCurrentWeatherCoordinates(latitude lat: Double, longitude lon: Double)
 }
@@ -42,7 +42,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
         self.networkService = networkService
     }
     
-    // MARK: - Private methods
+    // MARK: - Internal methods
     internal func makeAlert() -> UIAlertController {
         let alert = UIAlertController(title: "Error", message: "Please type a valid city name", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .destructive)
@@ -51,13 +51,13 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     }
     
     internal func saveCityCoordinates(lat: Double, lon: Double) {
-        userDefaults.set("coordinates", forKey: Constants.currentWeatherSavedType)
+        userDefaults.set("coordinates", forKey: Constants.weatherSavedType)
         userDefaults.set(lat, forKey: Constants.savedCityLatitude)
         userDefaults.set(lon, forKey: Constants.savedCityLongitude)
     }
     
     internal func saveCityName(_ cityName: String) {
-        userDefaults.set("name", forKey: Constants.currentWeatherSavedType)
+        userDefaults.set("name", forKey: Constants.weatherSavedType)
         userDefaults.set(cityName, forKey: Constants.savedCityName)
     }
     
@@ -74,7 +74,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     // MARK: - Public methods
     public func loadSavedWeather() {
-        guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.currentWeatherSavedType) else { return }
+        guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
         if currentWeatherSavedType == "name" {
             loadWeatherForSavedCityName()
         } else {
