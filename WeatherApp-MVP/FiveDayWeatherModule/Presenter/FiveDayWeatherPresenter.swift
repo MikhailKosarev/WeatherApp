@@ -10,30 +10,18 @@ import UIKit
 // input protocol
 protocol FiveDayWeatherViewProtocol: UIViewController {
     func updateCityLabel(with city: String)
-//    func updateWeatherHeader(with header: String)
-    func updateDetailsWeather(with viewData: DetailWeatherViewData?)
     func reloadDetailTableView()
-//    func reloadDaysCollectionView(dayOfWeek: String,
-//                                  dayOfMonth: String,
-//                                  tempMaxString: String,
-//                                  tempMinString: String,
-//                                  pressureString: String,
-//                                  conditionName: String)
-//    
-//    func reloadDetailsTabelView(dateHeader: String,
-//                                tempMaxString: String,
-//                                feelsLikeString: String,
-//                                tempMinString: String,
-//                                humidityString: String,
-//                                windSpeedString: String,
-//                                pressureString: String)
+    func showAlert(_ alert: UIAlertController)
 }
 
 // output protocol
 protocol FiveDayWeatherPresenterProtocol: AnyObject {
     var fiveDayWeatherData: FiveDayWeatherData? {get set}
     init(view: FiveDayWeatherViewProtocol, networkService: NetworkServiceProtocol)
+
+    func saveCityName(_ cityName: String)
     
+    func loadWeatherForSavedCity()
     func getFiveDayWeather(for cityName: String)
     func getDataForCitylabel()
     func getSectionHeader(for section: Int) -> String
@@ -52,20 +40,35 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
         self.networkService = networkService
     }
 
+    internal func saveCityName(_ cityName: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(cityName, forKey: Constants.savedCityName)
+    }
+    
+    func loadWeatherForSavedCity() {
+        let userDefaults = UserDefaults.standard
+        guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
+        getFiveDayWeather(for: cityName)
+    }
+    
     func getFiveDayWeather(for cityName: String) {
-        networkService.getFiveDayWeather(cityName: cityName) { [weak self] result in
+        // save cityName
+        saveCityName(cityName)
+        
+        // get data
+        networkService.getWeather(type: BaseUrl.fiveDayWeather, cityName: cityName) { [weak self] (result: Result<FiveDayWeatherData, Error>) in
             switch result {
             case .success(let fiveDayWeatherData):
                 // reload citylabel
                 self?.fiveDayWeatherData = fiveDayWeatherData
                 self?.getDataForCitylabel()
-                self?.view?.reloadDetailTableView()
-                // reload daysCollectionView
-                
                 // reload detailsTableView
-                
-                print("successful")
+                self?.view?.reloadDetailTableView()
             case .failure(let error):
+                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                DispatchQueue.main.async {
+                    self?.view?.showAlert(alert)
+                }
                 print(error)
             }
         }

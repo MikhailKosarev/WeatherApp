@@ -43,6 +43,12 @@ final class FiveDayWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+        presenter?.loadWeatherForSavedCity()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadWeatherForSavedCity()
     }
     
     // MARK: - Private methods
@@ -51,7 +57,7 @@ final class FiveDayWeatherViewController: UIViewController {
         view.addSubview(citySearchBar)
         view.addSubview(cityLabel)
         view.addSubview(detailsTableView)
-
+    
         detailsTableView.register(DetailsTableViewCell.self,
                                   forCellReuseIdentifier: DetailsTableViewCell.reuseID)
     }
@@ -69,15 +75,14 @@ extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
         cityLabel.text = city
     }
     
-
-    
-    func updateDetailsWeather(with viewData: DetailWeatherViewData?) {
-    }
-    
     func reloadDetailTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.detailsTableView.reloadData()
         }
+    }
+    
+    func showAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
     }
 }
 

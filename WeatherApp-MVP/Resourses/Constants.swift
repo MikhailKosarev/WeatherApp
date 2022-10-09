@@ -25,4 +25,7 @@ public struct Constants {
     // tabBar images
     static let currentImageSystemName = "clock.arrow.circlepath"
     static let fiveDaySystemName = "goforward.5"
+    
+    // userDefaults keys
+    static let savedCityName = ""
 }

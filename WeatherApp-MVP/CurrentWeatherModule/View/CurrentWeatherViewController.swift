@@ -55,6 +55,7 @@ final class CurrentWeatherViewController: UIViewController {
                                                       conditionImageView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.setCustomSpacing(Constants.spacing10, after: citySearchBar)
         stackView.spacing = Constants.spacing40
         return stackView
     }()
@@ -68,6 +69,11 @@ final class CurrentWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.loadWeatherForSavedCity()
     }
     
     // MARK: - Private methods
@@ -83,6 +89,10 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
+    func showAlert(_ alert: UIAlertController) {
+        self.present(alert, animated: true)
+    }
+    
     func reloadWeather(city: String, degree: String, condition: String) {
         cityLabel.text = city
         degreeLabel.text = degree
