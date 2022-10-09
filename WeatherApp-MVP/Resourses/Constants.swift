@@ -30,5 +30,8 @@ public struct Constants {
     static let locationImageSystemName = "location.circle"
     
     // userDefaults keys
-    static let savedCityName = ""
+    static let savedCityName = "savedCityName"
+    static let savedCityLatitude = "savedCityLatitude"
+    static let savedCityLongitude = "savedCityLongitude"
+    static let currentWeatherSavedType = "currentWeatherSavedType"
 }

@@ -23,7 +23,8 @@ protocol FiveDayWeatherPresenterProtocol: AnyObject {
     func saveCityName(_ cityName: String)
     
     func loadWeatherForSavedCity()
-    func getFiveDayWeather(for cityName: String)
+    func getFiveDayWeatherCity(for cityName: String)
+    func getFiveDayWeatherCoordinates(latitude lat: Double, longitude lon: Double)
     func getDataForCitylabel()
     func getSectionHeader(for section: Int) -> String
     func getDetailsWeather(for index: Int) -> DetailWeatherViewData?
@@ -49,10 +50,10 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     func loadWeatherForSavedCity() {
         let userDefaults = UserDefaults.standard
         guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
-        getFiveDayWeather(for: cityName)
+        getFiveDayWeatherCity(for: cityName)
     }
     
-    func getFiveDayWeather(for cityName: String) {
+    func getFiveDayWeatherCity(for cityName: String) {
         // save cityName
         saveCityName(cityName)
         
@@ -70,6 +71,33 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
+                print(error)
+            }
+        }
+    }
+    
+    public func getFiveDayWeatherCoordinates(latitude lat: Double, longitude lon: Double) {
+        // save cityName
+        //        saveCityName(cityName)
+        
+        let latString = String(lat)
+        let lonString = String(lon)
+        // get data
+        networkService.getWeatherCoordinates(type: BaseUrl.fiveDayWeatherCoordinates,
+                                             lat: latString,
+                                             lon: lonString)  { [weak self] (result: Result<FiveDayWeatherData, Error>) in
+            switch result {
+            case .success(let fiveDayWeatherData):
+                // reload citylabel
+                self?.fiveDayWeatherData = fiveDayWeatherData
+                self?.getDataForCitylabel()
+                // reload detailsTableView
+                self?.view?.reloadDetailTableView()
+            case .failure(let error):
+//                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+//                DispatchQueue.main.async {
+//                    self?.view?.showAlert(alert)
+//                }
                 print(error)
             }
         }

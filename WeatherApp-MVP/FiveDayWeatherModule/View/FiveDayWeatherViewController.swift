@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class FiveDayWeatherViewController: UIViewController {
     
@@ -46,6 +47,9 @@ final class FiveDayWeatherViewController: UIViewController {
         return tableView
     }()
     
+    // MARK: - Private properties
+    private let locationManager = CLLocationManager()
+    
     // MARK: - Public properties
     public var presenter: FiveDayWeatherPresenterProtocol?
     
@@ -78,13 +82,19 @@ final class FiveDayWeatherViewController: UIViewController {
         citySearchBar.delegate = self
         detailsTableView.dataSource = self
         detailsTableView.delegate = self
+        locationManager.delegate = self
+    }
+    
+    private func locationRequests() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
 }
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
     @objc func locationButtonTapped() {
-        print(#function)
+        locationManager.requestLocation()
     }
     
     func updateCityLabel(with city: String) {
@@ -108,7 +118,7 @@ extension FiveDayWeatherViewController: UISearchBarDelegate {
         // make request with city name
         
         if let cityName = searchBar.text {
-            presenter?.getFiveDayWeather(for: cityName)
+            presenter?.getFiveDayWeatherCity(for: cityName)
         } else {
             searchBar.placeholder = "print the city name here"
         }
@@ -160,6 +170,20 @@ extension FiveDayWeatherViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FiveDayWeatherViewController: UITableViewDelegate {
     
+}
+
+// MARK: - CLLocationManagerDelegate
+extension FiveDayWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        presenter?.getFiveDayWeatherCoordinates(latitude: lat, longitude: lon)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
 }
 
 // MARK: - setConstraints

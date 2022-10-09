@@ -17,9 +17,15 @@ protocol CurrentWeatherViewProtocol: UIViewController {
 // an output protocol
 protocol CurrentWeatherPresenterProtocol: AnyObject {
     init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol)
+    // internal
     func makeAlert() -> UIAlertController
-    func loadWeatherForSavedCity()
+    
     func saveCityName(_ cityName: String)
+    
+    // public
+    func saveCityCoordinates(lat: Double, lon: Double)
+    func loadWeatherForSavedCityName()
+    func loadSavedWeather()
     func getCurrentWeatherCity(for cityName: String)
     func getCurrentWeatherCoordinates(latitude lat: Double, longitude lon: Double)
 }
@@ -29,6 +35,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     weak var view: CurrentWeatherViewProtocol?
     var networkService: NetworkServiceProtocol
+    let userDefaults = UserDefaults.standard
     
     required init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -43,16 +50,36 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
         return alert
     }
     
+    internal func saveCityCoordinates(lat: Double, lon: Double) {
+        userDefaults.set("coordinates", forKey: Constants.currentWeatherSavedType)
+        userDefaults.set(lat, forKey: Constants.savedCityLatitude)
+        userDefaults.set(lon, forKey: Constants.savedCityLongitude)
+    }
+    
     internal func saveCityName(_ cityName: String) {
-        let userDefaults = UserDefaults.standard
+        userDefaults.set("name", forKey: Constants.currentWeatherSavedType)
         userDefaults.set(cityName, forKey: Constants.savedCityName)
     }
     
-    // MARK: - Public methods
-    public func loadWeatherForSavedCity() {
-        let userDefaults = UserDefaults.standard
+    internal func loadWeatherForSavedCityName() {
         guard let cityName = userDefaults.string(forKey: Constants.savedCityName) else { return }
         getCurrentWeatherCity(for: cityName)
+    }
+    
+    internal func loadWeatherForSavedCityCoordinates() {
+        let lat = userDefaults.double(forKey: Constants.savedCityLatitude)
+        let lon = userDefaults.double(forKey: Constants.savedCityLongitude)
+        getCurrentWeatherCoordinates(latitude: lat, longitude: lon)
+    }
+    
+    // MARK: - Public methods
+    public func loadSavedWeather() {
+        guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.currentWeatherSavedType) else { return }
+        if currentWeatherSavedType == "name" {
+            loadWeatherForSavedCityName()
+        } else {
+            loadWeatherForSavedCityCoordinates()
+        }
     }
     
     public func getCurrentWeatherCity(for cityName: String) {
@@ -84,8 +111,9 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     }
     
     public func getCurrentWeatherCoordinates(latitude lat: Double, longitude lon: Double) {
-        // save cityName
-        //        saveCityName(cityName)
+        // save city coordinates
+        saveCityCoordinates(lat: lat, lon: lon)
+        
         let latString = String(lat)
         let lonString = String(lon)
         // get data
@@ -106,10 +134,10 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 }
             case .failure(let error):
                 print("incorrect coordinates")
-//                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
-//                DispatchQueue.main.async {
-//                    self?.view?.showAlert(alert)
-//                }
+                //                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                //                DispatchQueue.main.async {
+                //                    self?.view?.showAlert(alert)
+                //                }
                 print(error)
             }
         }

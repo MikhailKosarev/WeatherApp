@@ -87,7 +87,7 @@ final class CurrentWeatherViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.loadWeatherForSavedCity()
+        presenter?.loadSavedWeather()
     }
     
     // MARK: - Private methods
