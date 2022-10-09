@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class CurrentWeatherViewController: UIViewController {
     
@@ -69,6 +70,9 @@ final class CurrentWeatherViewController: UIViewController {
         return stackView
     }()
     
+    // MARK: - Private properties
+    private let locationManager = CLLocationManager()
+    
     // MARK: - Public properties
     public var presenter: CurrentWeatherPresenterProtocol?
 
@@ -78,6 +82,7 @@ final class CurrentWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
+        locationRequests()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,13 +98,19 @@ final class CurrentWeatherViewController: UIViewController {
     
     private func setDelegates() {
         citySearchBar.delegate = self
+        locationManager.delegate = self
+    }
+    
+    private func locationRequests() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
 }
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
     @objc func locationButtonTapped() {
-        print(#function)
+        locationManager.requestLocation()
     }
     
     func showAlert(_ alert: UIAlertController) {
@@ -136,6 +147,20 @@ extension CurrentWeatherViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension CurrentWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        print((lat, lon))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }
 
