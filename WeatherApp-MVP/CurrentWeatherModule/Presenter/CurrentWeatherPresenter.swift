@@ -75,6 +75,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     // MARK: - Public methods
     public func loadSavedWeather() {
         guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
+        print(currentWeatherSavedType)
         if currentWeatherSavedType == "name" {
             loadWeatherForSavedCityName()
         } else {
@@ -113,7 +114,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     public func getCurrentWeatherCoordinates(latitude lat: Double, longitude lon: Double) {
         // save city coordinates
         saveCityCoordinates(lat: lat, lon: lon)
-        
+        print("ok")
         let latString = String(lat)
         let lonString = String(lon)
         // get data

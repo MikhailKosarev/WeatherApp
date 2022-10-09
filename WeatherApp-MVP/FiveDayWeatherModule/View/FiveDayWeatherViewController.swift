@@ -59,7 +59,6 @@ final class FiveDayWeatherViewController: UIViewController {
         setupView()
         setDelegates()
         setConstraints()
-        presenter?.loadWeatherForSavedCityName()
     }
     
     override func viewWillAppear(_ animated: Bool) {
