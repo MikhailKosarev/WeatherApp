@@ -114,8 +114,6 @@ extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
 // MARK: - UISearchBarDelegate
 extension FiveDayWeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // make request with city name
-        
         if let cityName = searchBar.text {
             presenter?.getFiveDayWeatherCity(for: cityName)
         } else {
@@ -146,7 +144,6 @@ extension FiveDayWeatherViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Header \(section)"
         return presenter?.getSectionHeader(for: section)
     }
     

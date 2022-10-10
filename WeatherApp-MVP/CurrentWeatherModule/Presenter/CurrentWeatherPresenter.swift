@@ -8,6 +8,7 @@
 import UIKit
 
 // an input protocol
+// MARK: - CurrentWeatherViewProtocol definition
 protocol CurrentWeatherViewProtocol: UIViewController {
     func locationButtonTapped()
     func reloadWeather(city: String, degree: String, condition: String)
@@ -15,6 +16,7 @@ protocol CurrentWeatherViewProtocol: UIViewController {
 }
 
 // an output protocol
+// MARK: - CurrentWeatherPresenterProtocol definition
 protocol CurrentWeatherPresenterProtocol: AnyObject {
     init(view: CurrentWeatherViewProtocol, networkService: NetworkServiceProtocol)
     
@@ -31,6 +33,7 @@ protocol CurrentWeatherPresenterProtocol: AnyObject {
 }
 
 // presenter class
+// MARK: - CurrentWeatherPresenter
 final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     weak var view: CurrentWeatherViewProtocol?
@@ -75,7 +78,6 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     // MARK: - Public methods
     public func loadSavedWeather() {
         guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
-        print(currentWeatherSavedType)
         if currentWeatherSavedType == "name" {
             loadWeatherForSavedCityName()
         } else {
@@ -114,7 +116,6 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     public func getCurrentWeatherCoordinates(latitude lat: Double, longitude lon: Double) {
         // save city coordinates
         saveCityCoordinates(lat: lat, lon: lon)
-        print("ok")
         let latString = String(lat)
         let lonString = String(lon)
         // get data
@@ -133,13 +134,12 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                                               degree: currentWeather.temperatureString,
                                               condition: currentWeather.conditionName)
                 }
-            case .failure(let error):
+            case .failure:
                 print("incorrect coordinates")
-                //                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
-                //                DispatchQueue.main.async {
-                //                    self?.view?.showAlert(alert)
-                //                }
-                print(error)
+                let alert = UIAlertController.alertOk(title: "Error", message: "Incorrect coordinates")
+                DispatchQueue.main.async {
+                    self?.view?.showAlert(alert)
+                }
             }
         }
     }

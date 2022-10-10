@@ -8,6 +8,7 @@
 import UIKit
 
 // input protocol
+// MARK: - FiveDayWeatherViewProtocol definition
 protocol FiveDayWeatherViewProtocol: UIViewController {
     func locationButtonTapped()
     func updateCityLabel(with city: String)
@@ -16,6 +17,7 @@ protocol FiveDayWeatherViewProtocol: UIViewController {
 }
 
 // output protocol
+// MARK: - FiveDayWeatherPresenterProtocol definition
 protocol FiveDayWeatherPresenterProtocol: AnyObject {
     var fiveDayWeatherData: FiveDayWeatherData? {get set}
     init(view: FiveDayWeatherViewProtocol, networkService: NetworkServiceProtocol)
@@ -74,7 +76,6 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     // MARK: - Public methods
     public func loadSavedWeather() {
         guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
-        print(currentWeatherSavedType)
         if currentWeatherSavedType == "name" {
             loadWeatherForSavedCityName()
         } else {
@@ -122,12 +123,11 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 self?.getDataForCitylabel()
                 // reload detailsTableView
                 self?.view?.reloadDetailTableView()
-            case .failure(let error):
-//                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
-//                DispatchQueue.main.async {
-//                    self?.view?.showAlert(alert)
-//                }
-                print(error)
+            case .failure:
+                let alert = UIAlertController.alertOk(title: "Error", message: "Incorrect coordinates")
+                DispatchQueue.main.async {
+                    self?.view?.showAlert(alert)
+                }
             }
         }
     }
