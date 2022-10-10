@@ -95,11 +95,12 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
             case .success(let currentWeatherData):
                 // write the model
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
+                                                         countryName: currentWeatherData.sys.country,
                                                          temperature: currentWeatherData.main.temp,
                                                          conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
-                    self?.view?.reloadWeather(city: currentWeather.cityName,
+                    self?.view?.reloadWeather(city: currentWeather.fullCityName,
                                               degree: currentWeather.temperatureString,
                                               condition: currentWeather.conditionName)
                 }
@@ -126,11 +127,12 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
             case .success(let currentWeatherData):
                 // write the model
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
+                                                         countryName: currentWeatherData.sys.country,
                                                          temperature: currentWeatherData.main.temp,
                                                          conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
-                    self?.view?.reloadWeather(city: currentWeather.cityName,
+                    self?.view?.reloadWeather(city: currentWeather.fullCityName,
                                               degree: currentWeather.temperatureString,
                                               condition: currentWeather.conditionName)
                 }

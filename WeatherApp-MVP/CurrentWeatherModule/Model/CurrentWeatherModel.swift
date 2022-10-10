@@ -9,8 +9,13 @@ import Foundation
 
 struct CurrentWeatherModel {
     let cityName: String
+    let countryName: String
     let temperature: Double
     let conditionId: Int
+    
+    var fullCityName: String {
+        "\(cityName), \(countryName)"
+    }
     
     var temperatureString: String {
         return String(format: "%.1f", temperature)

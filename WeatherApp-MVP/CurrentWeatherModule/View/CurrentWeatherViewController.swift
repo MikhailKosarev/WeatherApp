@@ -83,7 +83,6 @@ final class CurrentWeatherViewController: UIViewController {
         setDelegates()
         setConstraints()
         locationRequests()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
