@@ -46,6 +46,36 @@ final class CurrentWeatherViewController: UIViewController {
         return label
     }()
     
+    private let feelsLikeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Constants.systemFont30
+        label.textColor = .label
+        label.textAlignment = .center
+        label.text = "feels like 13°"
+        return label
+    }()
+    
+    private let windLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Constants.systemFont30
+        label.textColor = .label
+        label.textAlignment = .center
+        label.text = "wind: 4.63 m/s"
+        return label
+    }()
+    
+    private let humidityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = Constants.systemFont30
+        label.textColor = .label
+        label.textAlignment = .center
+        label.text = "humidity: 57%"
+        return label
+    }()
+    
     private let conditionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,12 +90,14 @@ final class CurrentWeatherViewController: UIViewController {
     
     private lazy var currentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [locSearchStackView,
-                                                      cityLabel,
-                                                      degreeLabel,
-                                                      conditionImageView])
+                                                       cityLabel,
+                                                       conditionImageView,
+                                                       degreeLabel,
+                                                       feelsLikeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.setCustomSpacing(Constants.spacing10, after: locSearchStackView)
+        stackView.setCustomSpacing(Constants.spacing10, after: degreeLabel)
         stackView.spacing = Constants.spacing40
         return stackView
     }()
@@ -117,10 +149,14 @@ extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
         self.present(alert, animated: true)
     }
     
-    func reloadWeather(city: String, degree: String, condition: String) {
+    func reloadWeather(city: String,
+                       condition: String,
+                       degree: String,
+                       feelsLike: String)  {
         cityLabel.text = city
-        degreeLabel.text = degree
         conditionImageView.image = UIImage(systemName: condition)
+        degreeLabel.text = degree
+        feelsLikeLabel.text = feelsLike
     }
 }
 
@@ -184,10 +220,12 @@ extension CurrentWeatherViewController {
             locationButton.heightAnchor.constraint(equalToConstant: 40),
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             
+            conditionImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
+            
             currentStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             currentStackView.topAnchor.constraint(equalTo: margins.topAnchor),
             currentStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            currentStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            currentStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor)
         ])
     }
 }

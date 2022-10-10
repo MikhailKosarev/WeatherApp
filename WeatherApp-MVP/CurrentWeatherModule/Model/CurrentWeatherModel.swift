@@ -11,6 +11,7 @@ struct CurrentWeatherModel {
     let cityName: String
     let countryName: String
     let temperature: Double
+    let feelsLike: Double
     let conditionId: Int
     
     var fullCityName: String {
@@ -18,7 +19,11 @@ struct CurrentWeatherModel {
     }
     
     var temperatureString: String {
-        return String(format: "%.1f", temperature)
+        return String(format: "%.0f", temperature) + "°"
+    }
+    
+    var feelsLikeString: String {
+        return "feels like " + String(format: "%.0f", feelsLike) + "°"
     }
     
     var conditionName: String {

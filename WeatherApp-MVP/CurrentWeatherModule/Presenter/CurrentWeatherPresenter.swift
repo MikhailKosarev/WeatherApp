@@ -11,7 +11,10 @@ import UIKit
 // MARK: - CurrentWeatherViewProtocol definition
 protocol CurrentWeatherViewProtocol: UIViewController {
     func locationButtonTapped()
-    func reloadWeather(city: String, degree: String, condition: String)
+    func reloadWeather(city: String,
+                       condition: String,
+                       degree: String,
+                       feelsLike: String)
     func showAlert(_ alert: UIAlertController)
 }
 
@@ -97,12 +100,14 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
                                                          countryName: currentWeatherData.sys.country,
                                                          temperature: currentWeatherData.main.temp,
+                                                         feelsLike: currentWeatherData.main.feelsLike,
                                                          conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
                     self?.view?.reloadWeather(city: currentWeather.fullCityName,
+                                              condition: currentWeather.conditionName,
                                               degree: currentWeather.temperatureString,
-                                              condition: currentWeather.conditionName)
+                                              feelsLike: currentWeather.feelsLikeString)
                 }
             case .failure(let error):
                 let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
@@ -129,12 +134,14 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 let currentWeather = CurrentWeatherModel(cityName: currentWeatherData.name,
                                                          countryName: currentWeatherData.sys.country,
                                                          temperature: currentWeatherData.main.temp,
+                                                         feelsLike: currentWeatherData.main.feelsLike,
                                                          conditionId: currentWeatherData.weather[0].id)
                 // reload view
                 DispatchQueue.main.async {
                     self?.view?.reloadWeather(city: currentWeather.fullCityName,
+                                              condition: currentWeather.conditionName,
                                               degree: currentWeather.temperatureString,
-                                              condition: currentWeather.conditionName)
+                                              feelsLike: currentWeather.feelsLikeString)
                 }
             case .failure:
                 print("incorrect coordinates")
