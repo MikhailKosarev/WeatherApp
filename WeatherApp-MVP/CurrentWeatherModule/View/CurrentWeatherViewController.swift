@@ -28,23 +28,11 @@ final class CurrentWeatherViewController: UIViewController {
         return searchBar
     }()
     
-    private let cityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont50
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let degreeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont80
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
+    private let cityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont50)
+    private let degreeLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont80)
+    private let feelsLikeLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
+    private let windLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
+    private let humidityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
     
     private let conditionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -60,12 +48,14 @@ final class CurrentWeatherViewController: UIViewController {
     
     private lazy var currentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [locSearchStackView,
-                                                      cityLabel,
-                                                      degreeLabel,
-                                                      conditionImageView])
+                                                       cityLabel,
+                                                       conditionImageView,
+                                                       degreeLabel,
+                                                       feelsLikeLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.setCustomSpacing(Constants.spacing10, after: locSearchStackView)
+        stackView.setCustomSpacing(Constants.spacing10, after: degreeLabel)
         stackView.spacing = Constants.spacing40
         return stackView
     }()
@@ -83,7 +73,6 @@ final class CurrentWeatherViewController: UIViewController {
         setDelegates()
         setConstraints()
         locationRequests()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -110,18 +99,19 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
-    @objc func locationButtonTapped() {
+    @objc public func locationButtonTapped() {
         locationManager.requestLocation()
     }
     
-    func showAlert(_ alert: UIAlertController) {
+    public func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
     
-    func reloadWeather(city: String, degree: String, condition: String) {
-        cityLabel.text = city
-        degreeLabel.text = degree
-        conditionImageView.image = UIImage(systemName: condition)
+    public func reloadWeather(viewData: CurrentWeatherViewData)  {
+        cityLabel.text = viewData.fullCityName
+        conditionImageView.image = UIImage(systemName: viewData.conditionName)
+        degreeLabel.text = viewData.temperatureString
+        feelsLikeLabel.text = viewData.feelsLikeString
     }
 }
 
@@ -185,10 +175,12 @@ extension CurrentWeatherViewController {
             locationButton.heightAnchor.constraint(equalToConstant: 40),
             locationButton.widthAnchor.constraint(equalToConstant: 40),
             
+            conditionImageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25),
+            
             currentStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             currentStackView.topAnchor.constraint(equalTo: margins.topAnchor),
             currentStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            currentStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            currentStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor)
         ])
     }
 }

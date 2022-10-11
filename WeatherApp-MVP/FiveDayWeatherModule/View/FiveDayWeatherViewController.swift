@@ -28,14 +28,7 @@ final class FiveDayWeatherViewController: UIViewController {
         return searchBar
     }()
     
-    private let cityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont50
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
+    private let cityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont50)
     
     private lazy var locSearchStackView = UIStackView(arrangedSubviews: [citySearchBar,
                                                                          locationButton],
@@ -44,6 +37,7 @@ final class FiveDayWeatherViewController: UIViewController {
     private let detailsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -92,21 +86,21 @@ final class FiveDayWeatherViewController: UIViewController {
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
-    @objc func locationButtonTapped() {
+    @objc public func locationButtonTapped() {
         locationManager.requestLocation()
     }
     
-    func updateCityLabel(with city: String) {
+    public func updateCityLabel(with city: String) {
         cityLabel.text = city
     }
     
-    func reloadDetailTableView() {
+    public func reloadDetailTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.detailsTableView.reloadData()
         }
     }
     
-    func showAlert(_ alert: UIAlertController) {
+    public func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
 }

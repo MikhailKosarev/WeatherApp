@@ -52,13 +52,13 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     
     // MARK: - Internal methods
     internal func saveCityCoordinates(lat: Double, lon: Double) {
-        userDefaults.set("coordinates", forKey: Constants.weatherSavedType)
+        userDefaults.set(WeatherSavedType.coordinates.rawValue, forKey: Constants.weatherSavedType)
         userDefaults.set(lat, forKey: Constants.savedCityLatitude)
         userDefaults.set(lon, forKey: Constants.savedCityLongitude)
     }
     
     internal func saveCityName(_ cityName: String) {
-        userDefaults.set("name", forKey: Constants.weatherSavedType)
+        userDefaults.set(WeatherSavedType.name.rawValue, forKey: Constants.weatherSavedType)
         userDefaults.set(cityName, forKey: Constants.savedCityName)
     }
     
@@ -76,7 +76,7 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
     // MARK: - Public methods
     public func loadSavedWeather() {
         guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
-        if currentWeatherSavedType == "name" {
+        if currentWeatherSavedType == WeatherSavedType.name.rawValue {
             loadWeatherForSavedCityName()
         } else {
             loadWeatherForSavedCityCoordinates()
@@ -97,7 +97,8 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 // reload detailsTableView
                 self?.view?.reloadDetailTableView()
             case .failure(let error):
-                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Please type a valid city name")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
@@ -124,7 +125,8 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 // reload detailsTableView
                 self?.view?.reloadDetailTableView()
             case .failure:
-                let alert = UIAlertController.alertOk(title: "Error", message: "Incorrect coordinates")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Incorrect coordinates")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
