@@ -28,14 +28,7 @@ final class FiveDayWeatherViewController: UIViewController {
         return searchBar
     }()
     
-    private let cityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont50
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
+    private let cityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont50)
     
     private lazy var locSearchStackView = UIStackView(arrangedSubviews: [citySearchBar,
                                                                          locationButton],

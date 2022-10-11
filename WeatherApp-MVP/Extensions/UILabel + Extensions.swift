@@ -27,4 +27,13 @@ extension UILabel {
         label.font = .preferredFont(forTextStyle: .title3)
         return label
     }
+    
+    static func makeWeatherInfoLabel(font: UIFont) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = font
+        label.textColor = .label
+        label.textAlignment = .center
+        return label
+    }
 }

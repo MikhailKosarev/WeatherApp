@@ -28,53 +28,11 @@ final class CurrentWeatherViewController: UIViewController {
         return searchBar
     }()
     
-    private let cityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont50
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let degreeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont80
-        label.textColor = .label
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let feelsLikeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont30
-        label.textColor = .label
-        label.textAlignment = .center
-        label.text = "feels like 13°"
-        return label
-    }()
-    
-    private let windLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont30
-        label.textColor = .label
-        label.textAlignment = .center
-        label.text = "wind: 4.63 m/s"
-        return label
-    }()
-    
-    private let humidityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.systemFont30
-        label.textColor = .label
-        label.textAlignment = .center
-        label.text = "humidity: 57%"
-        return label
-    }()
+    private let cityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont50)
+    private let degreeLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont80)
+    private let feelsLikeLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
+    private let windLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
+    private let humidityLabel = UILabel.makeWeatherInfoLabel(font: Constants.systemFont30)
     
     private let conditionImageView: UIImageView = {
         let imageView = UIImageView()
