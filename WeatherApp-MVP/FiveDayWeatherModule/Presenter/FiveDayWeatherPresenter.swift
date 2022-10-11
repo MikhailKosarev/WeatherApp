@@ -97,7 +97,8 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 // reload detailsTableView
                 self?.view?.reloadDetailTableView()
             case .failure(let error):
-                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Please type a valid city name")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
@@ -124,7 +125,8 @@ class FiveDayWeatherPresenter: FiveDayWeatherPresenterProtocol {
                 // reload detailsTableView
                 self?.view?.reloadDetailTableView()
             case .failure:
-                let alert = UIAlertController.alertOk(title: "Error", message: "Incorrect coordinates")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Incorrect coordinates")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }

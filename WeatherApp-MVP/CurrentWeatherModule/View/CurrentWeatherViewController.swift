@@ -99,15 +99,15 @@ final class CurrentWeatherViewController: UIViewController {
 
 // MARK: - CurrentWeatherViewProtocol
 extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
-    @objc func locationButtonTapped() {
+    @objc public func locationButtonTapped() {
         locationManager.requestLocation()
     }
     
-    func showAlert(_ alert: UIAlertController) {
+    public func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
     
-    func reloadWeather(viewData: CurrentWeatherViewData)  {
+    public func reloadWeather(viewData: CurrentWeatherViewData)  {
         cityLabel.text = viewData.fullCityName
         conditionImageView.image = UIImage(systemName: viewData.conditionName)
         degreeLabel.text = viewData.temperatureString

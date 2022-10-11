@@ -86,21 +86,21 @@ final class FiveDayWeatherViewController: UIViewController {
 
 // MARK: - FiveDayWeatherViewProtocol
 extension FiveDayWeatherViewController: FiveDayWeatherViewProtocol {
-    @objc func locationButtonTapped() {
+    @objc public func locationButtonTapped() {
         locationManager.requestLocation()
     }
     
-    func updateCityLabel(with city: String) {
+    public func updateCityLabel(with city: String) {
         cityLabel.text = city
     }
     
-    func reloadDetailTableView() {
+    public func reloadDetailTableView() {
         DispatchQueue.main.async { [weak self] in
             self?.detailsTableView.reloadData()
         }
     }
     
-    func showAlert(_ alert: UIAlertController) {
+    public func showAlert(_ alert: UIAlertController) {
         self.present(alert, animated: true)
     }
 }

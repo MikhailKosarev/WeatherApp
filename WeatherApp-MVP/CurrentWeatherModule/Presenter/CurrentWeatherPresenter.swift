@@ -47,7 +47,9 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     
     // MARK: - Internal methods
     internal func makeAlert() -> UIAlertController {
-        let alert = UIAlertController(title: "Error", message: "Please type a valid city name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error",
+                                      message: "Please type a valid city name",
+                                      preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .destructive)
         alert.addAction(okAction)
         return alert
@@ -105,7 +107,8 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                     self?.view?.reloadWeather(viewData: currentWeather)
                 }
             case .failure(let error):
-                let alert = UIAlertController.alertOk(title: "Error", message: "Please type a valid city name")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Please type a valid city name")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
@@ -137,7 +140,8 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
                 }
             case .failure:
                 print("incorrect coordinates")
-                let alert = UIAlertController.alertOk(title: "Error", message: "Incorrect coordinates")
+                let alert = UIAlertController.alertOk(title: "Error",
+                                                      message: "Incorrect coordinates")
                 DispatchQueue.main.async {
                     self?.view?.showAlert(alert)
                 }
