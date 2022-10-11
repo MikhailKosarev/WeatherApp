@@ -44,6 +44,7 @@ final class FiveDayWeatherViewController: UIViewController {
     private let detailsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.allowsSelection = false
         return tableView
     }()
     
