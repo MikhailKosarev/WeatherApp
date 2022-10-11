@@ -54,13 +54,14 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     }
     
     internal func saveCityCoordinates(lat: Double, lon: Double) {
-        userDefaults.set("coordinates", forKey: Constants.weatherSavedType)
+        userDefaults.set(WeatherSavedType.coordinates.rawValue, forKey: Constants.weatherSavedType)
         userDefaults.set(lat, forKey: Constants.savedCityLatitude)
         userDefaults.set(lon, forKey: Constants.savedCityLongitude)
     }
     
     internal func saveCityName(_ cityName: String) {
-        userDefaults.set("name", forKey: Constants.weatherSavedType)
+        // set weatherSavedType (name or coordinates
+        userDefaults.set(WeatherSavedType.name.rawValue, forKey: Constants.weatherSavedType)
         userDefaults.set(cityName, forKey: Constants.savedCityName)
     }
     
@@ -78,7 +79,7 @@ final class CurrentWeatherPresenter: CurrentWeatherPresenterProtocol {
     // MARK: - Public methods
     public func loadSavedWeather() {
         guard let currentWeatherSavedType = userDefaults.string(forKey: Constants.weatherSavedType) else { return }
-        if currentWeatherSavedType == "name" {
+        if currentWeatherSavedType == WeatherSavedType.name.rawValue {
             loadWeatherForSavedCityName()
         } else {
             loadWeatherForSavedCityCoordinates()

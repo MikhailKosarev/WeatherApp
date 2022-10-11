@@ -35,9 +35,10 @@ public struct Constants {
     static let savedCityLatitude = "savedCityLatitude"
     static let savedCityLongitude = "savedCityLongitude"
     static let weatherSavedType = "weatherSavedType"
+
 }
 
-
+// types of saved weather
 enum WeatherSavedType: String {
     case name
     case coordinates
