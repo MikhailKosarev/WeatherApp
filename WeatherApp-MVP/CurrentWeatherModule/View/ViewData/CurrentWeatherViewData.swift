@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentWeatherModel {
+struct CurrentWeatherViewData {
     let cityName: String
     let countryName: String
     let temperature: Double

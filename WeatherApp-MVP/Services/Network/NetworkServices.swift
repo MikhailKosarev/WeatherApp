@@ -8,13 +8,20 @@
 import Foundation
 
 protocol NetworkServiceProtocol: AnyObject {
-    func getWeatherCity<WeatherData: Decodable>(type baseUrl: BaseUrl, cityName: String, completion: @escaping(Result<WeatherData, Error>) -> Void)
-    func getWeatherCoordinates<WeatherData: Decodable>(type baseUrl: BaseUrl, lat: String, lon: String, completion: @escaping(Result<WeatherData, Error>) -> Void)
+    func getWeatherCity<WeatherData: Decodable>(type baseUrl: BaseUrl,
+                                                cityName: String,
+                                                completion: @escaping(Result<WeatherData, Error>) -> Void)
+    func getWeatherCoordinates<WeatherData: Decodable>(type baseUrl: BaseUrl,
+                                                       lat: String,
+                                                       lon: String,
+                                                       completion: @escaping(Result<WeatherData, Error>) -> Void)
 }
 
 final class NetworkService: NetworkServiceProtocol {
     
-    func getWeatherCity<T: Decodable>(type baseUrl: BaseUrl, cityName: String, completion: @escaping (Result<T, Error>) -> Void) {
+    public func getWeatherCity<T: Decodable>(type baseUrl: BaseUrl,
+                                      cityName: String,
+                                      completion: @escaping (Result<T, Error>) -> Void) {
         let urlString = baseUrl.rawValue + cityName
         guard let url = URL(string: urlString) else { return }
         
@@ -37,7 +44,10 @@ final class NetworkService: NetworkServiceProtocol {
         task.resume()
     }
     
-    func getWeatherCoordinates<T: Decodable>(type baseUrl: BaseUrl, lat: String, lon: String, completion: @escaping (Result<T, Error>) -> Void) {
+    public func getWeatherCoordinates<T: Decodable>(type baseUrl: BaseUrl,
+                                             lat: String,
+                                             lon: String,
+                                             completion: @escaping (Result<T, Error>) -> Void) {
         let urlString = baseUrl.rawValue + "&lat=" + lat + "&lon=" + lon
         guard let url = URL(string: urlString) else { return }
         
