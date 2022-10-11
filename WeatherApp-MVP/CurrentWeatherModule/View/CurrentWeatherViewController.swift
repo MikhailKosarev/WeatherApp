@@ -107,14 +107,11 @@ extension CurrentWeatherViewController: CurrentWeatherViewProtocol {
         self.present(alert, animated: true)
     }
     
-    func reloadWeather(city: String,
-                       condition: String,
-                       degree: String,
-                       feelsLike: String)  {
-        cityLabel.text = city
-        conditionImageView.image = UIImage(systemName: condition)
-        degreeLabel.text = degree
-        feelsLikeLabel.text = feelsLike
+    func reloadWeather(viewData: CurrentWeatherViewData)  {
+        cityLabel.text = viewData.fullCityName
+        conditionImageView.image = UIImage(systemName: viewData.conditionName)
+        degreeLabel.text = viewData.temperatureString
+        feelsLikeLabel.text = viewData.feelsLikeString
     }
 }
 

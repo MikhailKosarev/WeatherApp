@@ -21,7 +21,7 @@
 		74AC639528E3089100354BD2 /* UIViewController + Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639428E3089100354BD2 /* UIViewController + Preview.swift */; };
 		74AC639C28E43C2500354BD2 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639B28E43C2500354BD2 /* CurrentWeatherData.swift */; };
 		74AC639F28E4447300354BD2 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC639E28E4447300354BD2 /* NetworkServices.swift */; };
-		74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63A028E45B0D00354BD2 /* CurrentWeatherModel.swift */; };
+		74AC63A128E45B0D00354BD2 /* CurrentWeatherViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC63A028E45B0D00354BD2 /* CurrentWeatherViewData.swift */; };
 		74B1057128E72D10002F679B /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B1057028E72D10002F679B /* Builder.swift */; };
 		74B1057328E8D948002F679B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B1057228E8D948002F679B /* MainTabBarController.swift */; };
 		74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */; };
@@ -49,7 +49,7 @@
 		74AC639428E3089100354BD2 /* UIViewController + Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Preview.swift"; sourceTree = "<group>"; };
 		74AC639B28E43C2500354BD2 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
 		74AC639E28E4447300354BD2 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
-		74AC63A028E45B0D00354BD2 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
+		74AC63A028E45B0D00354BD2 /* CurrentWeatherViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewData.swift; sourceTree = "<group>"; };
 		74B1057028E72D10002F679B /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		74B1057228E8D948002F679B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		74F31D0E28E47E230096309D /* FiveDayWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDayWeatherViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +78,14 @@
 				74AC639E28E4447300354BD2 /* NetworkServices.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		74A0CA9C28F5AF9D00353237 /* ViewData */ = {
+			isa = PBXGroup;
+			children = (
+				74AC63A028E45B0D00354BD2 /* CurrentWeatherViewData.swift */,
+			);
+			path = ViewData;
 			sourceTree = "<group>";
 		};
 		74AC636A28E2F0C300354BD2 = {
@@ -144,6 +152,7 @@
 		74AC638F28E2F62000354BD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				74A0CA9C28F5AF9D00353237 /* ViewData */,
 				74AC637A28E2F0C300354BD2 /* CurrentWeatherViewController.swift */,
 			);
 			path = View;
@@ -172,7 +181,6 @@
 			isa = PBXGroup;
 			children = (
 				74AC639B28E43C2500354BD2 /* CurrentWeatherData.swift */,
-				74AC63A028E45B0D00354BD2 /* CurrentWeatherModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -351,7 +359,7 @@
 				74F31D2228E5DDE70096309D /* DetailWeatherViewData.swift in Sources */,
 				7419F8DD28ED845D00049707 /* UIAlertController + Extensions.swift in Sources */,
 				74F31D0F28E47E230096309D /* FiveDayWeatherViewController.swift in Sources */,
-				74AC63A128E45B0D00354BD2 /* CurrentWeatherModel.swift in Sources */,
+				74AC63A128E45B0D00354BD2 /* CurrentWeatherViewData.swift in Sources */,
 				74F31D1928E5A62A0096309D /* FiveDayWeatherPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
