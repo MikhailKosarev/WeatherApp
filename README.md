@@ -6,6 +6,8 @@ A design is not the point of this project.
 Technology stack:
 - UIKit, No Storyboard
 - MVP
+- JSON
+- GCD
 - Network layer
 - API https://openweathermap.org/api
 ## Screenshots
