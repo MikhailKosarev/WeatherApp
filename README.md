@@ -5,7 +5,8 @@ A simple iOS weatherApp built on **MVP** (Model-View-Presenter) architecture pat
 A design is not the point of this project.
 Technology stack:
 - UIKit, No Storyboard
-- MVP
+- MapKit
+- MVP architecture
 - JSON
 - GCD
 - Network layer
