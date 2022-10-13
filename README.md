@@ -5,11 +5,12 @@ A simple iOS weatherApp built on **MVP** (Model-View-Presenter) architecture pat
 A design is not the point of this project.
 Technology stack:
 - UIKit, No Storyboard
-- MapKit
+- CoreLocation
 - MVP architecture
 - JSON
 - GCD
 - Network layer
+- GitFlow branching model
 - API https://openweathermap.org/api
 ## Screenshots
 <img src="https://user-images.githubusercontent.com/100238123/195424978-536c4fb0-13f5-49d5-a5e3-539fd44b3c9e.png">
