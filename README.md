@@ -1,4 +1,4 @@
-# WeatherApp-MVP
+# WeatherApp
 
 ## Description
 A simple iOS weatherApp built on **MVP** (Model-View-Presenter) architecture pattern with module builder and Networ layer. **100% programmatic UI, no storyboards.** 
